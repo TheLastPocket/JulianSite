@@ -43,28 +43,61 @@ export default function ChannelGrid({ channelState, setChannelState }) {
 
     return (
         <div className="channels-container">
-            <div className="channel-column">
-                {scroll_index != 0 &&
-                    <div>
-                        {[...Array(getColumnSize()).keys()].map(key => <Channel id={channelMetadata.channels.length - 1} channelState={channelState} setChannelState={setChannelState} />)}
-                    </div>
-                }
+
+            {/* Left channel column, not rendered if on first page */}
+            <div className="channel-column"
+                style={{display: scroll_index === 0 ? "none": "flex"}}>
+                <div>
+                    {[...Array(getColumnSize()).keys()].map(
+                        (item, index) => <Channel key={index}
+                                        id={channelMetadata.channels.length - 1} 
+                                        channelState={channelState} 
+                                        setChannelState={setChannelState} />
+                    )}
+                </div>
             </div>
-            <div className="channel-grid">
-                {channelMetadata.channels.map((item, index) => (
+
+            {/* central channel column */}
+            <div className="channel-grid"
+                 style={{justifyContent: scroll_index === 0 
+                            ? "flex-end" 
+                            : scroll_index === channelMetadata.const.number_of_pages - 1 
+                            ? "flex-start" 
+                            : "center"
+                 }}>
+              
+                {/* Channels listed in json*/}
+                {channelMetadata.channels.map(
+                    (item, index) => (
                     index < getGridSize() && (
-                        <Channel id={index} channelState={channelState} setChannelState={setChannelState} />
+                        <Channel key = {getColumnSize() + index} 
+                                 id={index} 
+                                 channelState={channelState} 
+                                 setChannelState={setChannelState} />
                     )
                 ))}
-                {[...Array(Math.max(0, getGridSize() - channelMetadata.channels.length)).keys()].map(key => <Channel id={channelMetadata.channels.length - 1} channelState={channelState} setChannelState={setChannelState} />)}
+
+                {/* Empty channels after to fill up space */}
+                {[...Array(Math.max(0, getGridSize() - channelMetadata.channels.length)).keys()].map(
+                    (item, index) => <Channel key = {getColumnSize() + channelMetadata.channels.length + index}
+                                    id={channelMetadata.channels.length - 1} 
+                                    channelState={channelState} 
+                                    setChannelState={setChannelState} />
+                )}
 
             </div>
-            <div className="channel-column">
-                {scroll_index != (channelMetadata.const.number_of_pages - 1) &&
-                    <div>
-                        {[...Array(getColumnSize()).keys()].map(key => <Channel id={channelMetadata.channels.length - 1} channelState={channelState} setChannelState={setChannelState} />)}
-                    </div>
-                }
+
+            {/* Right channel column, not rendered if on last page */}
+            <div className="channel-column"
+                 style={{display: scroll_index === (channelMetadata.const.number_of_pages - 1) ? "none": "flex"}}>
+                <div>
+                    {[...Array(getColumnSize()).keys()].map(
+                        (item, index) => <Channel key={index}
+                                        id={channelMetadata.channels.length - 1} 
+                                        channelState={channelState} 
+                                        setChannelState={setChannelState} />
+                    )}
+                </div>
             </div>
         </div >
     )
