@@ -23,23 +23,24 @@ function useWindowSize() {
     return size;
 }
 
-function getGridSize() {
-    const [width, height] = useWindowSize();
-    if (width < 750) {
+function getGridSize(window_width) {
+    if (window_width < 750) {
         return numChannelsMobile;
     }
     return numChannelsDesktop;
 }
 
-function getColumnSize(){
-    const [width, height] = useWindowSize();
-    if (width < 750) {
+function getColumnSize(window_width){
+    if (window_width < 750) {
         return numColumnRowsMobile;
     }
     return numColumnRowsDesktop;
 }
 
 export default function ChannelGrid({ channelState, setChannelState }) {
+    const [width, height] = useWindowSize();
+    const num_grid_channels = getGridSize(width);
+    const num_column_channels = getColumnSize(width);
 
     return (
         <div className="channels-container">
@@ -48,7 +49,7 @@ export default function ChannelGrid({ channelState, setChannelState }) {
             <div className="channel-column"
                 style={{display: scroll_index === 0 ? "none": "flex"}}>
                 <div>
-                    {[...Array(getColumnSize()).keys()].map(
+                    {[...Array(num_column_channels).keys()].map(
                         (item, index) => <Channel key={index}
                                         id={channelMetadata.channels.length - 1} 
                                         channelState={channelState} 
@@ -69,8 +70,8 @@ export default function ChannelGrid({ channelState, setChannelState }) {
                 {/* Channels listed in json*/}
                 {channelMetadata.channels.map(
                     (item, index) => (
-                    index < getGridSize() && (
-                        <Channel key = {getColumnSize() + index} 
+                    index < num_grid_channels && (
+                        <Channel key = {num_column_channels + index} 
                                  id={index} 
                                  channelState={channelState} 
                                  setChannelState={setChannelState} />
@@ -78,8 +79,8 @@ export default function ChannelGrid({ channelState, setChannelState }) {
                 ))}
 
                 {/* Empty channels after to fill up space */}
-                {[...Array(Math.max(0, getGridSize() - channelMetadata.channels.length)).keys()].map(
-                    (item, index) => <Channel key = {getColumnSize() + channelMetadata.channels.length + index}
+                {[...Array(Math.max(0, num_grid_channels - channelMetadata.channels.length)).keys()].map(
+                    (item, index) => <Channel key = {num_column_channels + channelMetadata.channels.length + index}
                                     id={channelMetadata.channels.length - 1} 
                                     channelState={channelState} 
                                     setChannelState={setChannelState} />
@@ -91,7 +92,7 @@ export default function ChannelGrid({ channelState, setChannelState }) {
             <div className="channel-column"
                  style={{display: scroll_index === (channelMetadata.const.number_of_pages - 1) ? "none": "flex"}}>
                 <div>
-                    {[...Array(getColumnSize()).keys()].map(
+                    {[...Array(num_column_channels).keys()].map(
                         (item, index) => <Channel key={index}
                                         id={channelMetadata.channels.length - 1} 
                                         channelState={channelState} 

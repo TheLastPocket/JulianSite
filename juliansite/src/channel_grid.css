@@ -35,6 +35,6 @@
     flex-direction: column;
     justify-content: center;
     flex-grow: 1;
-
+    border: 2px solid purple;
     min-width: var(--channel-width);
 }
