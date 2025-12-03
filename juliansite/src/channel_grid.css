@@ -16,14 +16,14 @@
     display: flex;
     height: 100%;
     flex-wrap: wrap;
-    
+    border: 2px solid gold;
     flex-grow: 2;
    
     align-content: center;
     /*gap: 0.5vh 0.5vh;*/ /*Desktop*/
     gap: 0.0vh;
     /* border: 2px solid green; */
-
+    
 }
 
 
