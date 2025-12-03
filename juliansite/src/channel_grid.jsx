@@ -7,7 +7,7 @@ const numChannelsDesktop = 12;
 const numChannelsMobile = 8;
 const numColumnRowsDesktop = 3;
 const numColumnRowsMobile = 4;
-const scroll_index = 1;
+const scroll_index = 0;
 
 function useWindowSize() {
     const [size, setSize] = useState([0, 0]);
@@ -40,7 +40,6 @@ function getColumnSize(){
 }
 
 export default function ChannelGrid({ channelState, setChannelState }) {
-
 
     return (
         <div className="channels-container">
