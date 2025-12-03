@@ -4,9 +4,9 @@ import './channel_grid.css'
 import channelMetadata from "./channelMetadata.json"
 
 const numChannelsDesktop = 12;
-const numChannelsMobile = 8;
+const numChannelsMobile = 5;
 const numColumnRowsDesktop = 3;
-const numColumnRowsMobile = 4;
+const numColumnRowsMobile = 5;
 const scroll_index = 0;
 
 function useWindowSize() {

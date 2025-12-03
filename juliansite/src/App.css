@@ -27,9 +27,11 @@
 
   --ib-aspect-ratio: 170/96;
 
-  /* --channel-width: 36vh; */ /*Desktop*/
-  --channel-width: 15.2vh;
-  
+
+  --channel-width: 36vh; /*15.2*/
+  --channel-container-left-offset: -10vw;
+  --channel-container-width: 120vw;
+  --channel-container-height: 65vh;
   /*This is for icon*/
   /* --ib-aspect-ratio: 832/456; THIS IS FOR THE BANNER*/
 
@@ -67,6 +69,11 @@
     --time-digit-height: 3vh;
 
     --date-font-size: 100%;
+
+    --channel-container-left-offset: -18vw;
+    --channel-width: 21vh;
+    --channel-container-width: 135vw;
+    --channel-container-height: 80vh;
   }
 }
 
