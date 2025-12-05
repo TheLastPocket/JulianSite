@@ -7,6 +7,11 @@ const numChannelsDesktop = 12;
 const numChannelsMobile = 5;
 const numColumnRowsDesktop = 3;
 const numColumnRowsMobile = 5;
+
+const channelKeyLeftColumnBegin = 0;
+const channelKeyGridBegin = 20;
+const channelKeyRightColumnBegin = 70;
+
 const scroll_index = 0;
 
 function useWindowSize() {
@@ -47,7 +52,7 @@ export default function ChannelGrid({ channelState, setChannelState }) {
 
             {/* Left channel column, not rendered if on first page */}
             <div className="channel-column"
-                style={{display: scroll_index === 0 ? "none": "flex"}}>
+                style={{visibility: scroll_index === 0 ? "hidden": "visible"}}>
                 <div>
                     {[...Array(num_column_channels).keys()].map(
                         (item, index) => <Channel key={index}
@@ -90,7 +95,7 @@ export default function ChannelGrid({ channelState, setChannelState }) {
 
             {/* Right channel column, not rendered if on last page */}
             <div className="channel-column"
-                 style={{display: scroll_index === (channelMetadata.const.number_of_pages - 1) ? "none": "flex"}}>
+                 style={{visibility: scroll_index === channelMetadata.const.number_of_pages - 1 ? "hidden": "visible"}}>
                 <div>
                     {[...Array(num_column_channels).keys()].map(
                         (item, index) => <Channel key={index}
