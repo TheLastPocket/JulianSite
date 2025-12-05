@@ -3,16 +3,27 @@ import Channel from './channel.jsx'
 import './channel_grid.css'
 import channelMetadata from "./channelMetadata.json"
 
-const numChannelsDesktop = 12;
-const numChannelsMobile = 5;
-const numColumnRowsDesktop = 3;
-const numColumnRowsMobile = 5;
+const channelSizingLayout = {
+    "750": {
+        "numChannelsColumn": 5,
+        "numChannelsGrid": 5, 
+    },
+    "1250": {
+        "numChannelsColumn": 5,
+        "numChannelsGrid": 10, 
+    },
+     "7000": {
+        "numChannelsColumn": 3,
+        "numChannelsGrid": 12, 
+    },
 
+}
+//Arbitrary beginning values for channel map function
 const channelKeyLeftColumnBegin = 0;
 const channelKeyGridBegin = 20;
 const channelKeyRightColumnBegin = 70;
 
-const scroll_index = 0;
+const scroll_index = 1;
 
 function useWindowSize() {
     const [size, setSize] = useState([0, 0]);
@@ -29,17 +40,26 @@ function useWindowSize() {
 }
 
 function getGridSize(window_width) {
-    if (window_width < 750) {
-        return numChannelsMobile;
+
+    for (const [key,value] of Object.entries(channelSizingLayout)) {
+        if (window_width <= key ) {
+            return value["numChannelsGrid"];
+        }
     }
-    return numChannelsDesktop;
+
+    const keys = Object.keys(channelSizingLayout);
+    return keys[keys.length - 1]["numChannelsGrid"];
 }
 
 function getColumnSize(window_width){
-    if (window_width < 750) {
-        return numColumnRowsMobile;
+    for (const [key,value] of Object.entries(channelSizingLayout)) {
+        if (window_width <= key ) {
+            return value["numChannelsColumn"];
+        }
     }
-    return numColumnRowsDesktop;
+
+    const keys = Object.keys(channelSizingLayout);
+    return keys[keys.length - 1]["numChannelsColumn"];
 }
 
 export default function ChannelGrid({ channelState, setChannelState }) {
@@ -55,7 +75,7 @@ export default function ChannelGrid({ channelState, setChannelState }) {
                 style={{visibility: scroll_index === 0 ? "hidden": "visible"}}>
                 <div>
                     {[...Array(num_column_channels).keys()].map(
-                        (item, index) => <Channel key={index}
+                        (item, index) => <Channel key={channelKeyLeftColumnBegin + index}
                                         id={channelMetadata.channels.length - 1} 
                                         channelState={channelState} 
                                         setChannelState={setChannelState} />
@@ -76,7 +96,7 @@ export default function ChannelGrid({ channelState, setChannelState }) {
                 {channelMetadata.channels.map(
                     (item, index) => (
                     index < num_grid_channels && (
-                        <Channel key = {num_column_channels + index} 
+                        <Channel key = {channelKeyGridBegin + index} 
                                  id={index} 
                                  channelState={channelState} 
                                  setChannelState={setChannelState} />
@@ -85,7 +105,7 @@ export default function ChannelGrid({ channelState, setChannelState }) {
 
                 {/* Empty channels after to fill up space */}
                 {[...Array(Math.max(0, num_grid_channels - channelMetadata.channels.length)).keys()].map(
-                    (item, index) => <Channel key = {num_column_channels + channelMetadata.channels.length + index}
+                    (item, index) => <Channel key = {channelKeyGridBegin + channelMetadata.channels.length + index}
                                     id={channelMetadata.channels.length - 1} 
                                     channelState={channelState} 
                                     setChannelState={setChannelState} />
@@ -98,7 +118,7 @@ export default function ChannelGrid({ channelState, setChannelState }) {
                  style={{visibility: scroll_index === channelMetadata.const.number_of_pages - 1 ? "hidden": "visible"}}>
                 <div>
                     {[...Array(num_column_channels).keys()].map(
-                        (item, index) => <Channel key={index}
+                        (item, index) => <Channel key={channelKeyRightColumnBegin + index}
                                         id={channelMetadata.channels.length - 1} 
                                         channelState={channelState} 
                                         setChannelState={setChannelState} />
