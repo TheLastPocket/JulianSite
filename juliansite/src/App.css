@@ -37,22 +37,15 @@
 
 }
 
-@media (max-width: 1816px) {
+@media (max-width: 1100px) {
   :root {
-    --channel-width: 19vw;
+    --channel-width: 28vh;
+    --channel-container-height: 75vh;
   }
 }
+
 
 @media (max-width: 1200px) {
-  :root {
-    --channel-container-left-offset: -10vw;
-    --channel-width: 22vh;
-    --channel-container-width: 120vw;
-    --channel-container-height: 80vh;
-  }
-}
-
-@media (max-width: 1100px) {
   :root {
     --bottom-bar-height: 15vh;
 
@@ -62,27 +55,6 @@
     --time-digit-height: 5vh;
 
     --date-font-size: 210%;
-
-  
-
-  }
-}
-
-@media (max-width: 900px) {
-  :root {
-      --channel-container-left-offset: -10vw;
-    --channel-width: 20vh;
-    --channel-container-width: 118vw;
-    --channel-container-height: 80vh;
-  }
-}
-
-@media (max-width: 800px) {
-  :root {
-      --channel-container-left-offset: -15vw;
-    --channel-width: 24vh;
-    --channel-container-width: 130vw;
-    --channel-container-height: 80vh;
   }
 }
 
@@ -93,6 +65,12 @@
   }
 }
 
+@media (max-width: 550px) {
+  :root {
+    --channel-width: 28vh;
+    --channel-container-height: 80vh;
+  }
+}
 
 @media (max-width: 490px) {
   :root {
@@ -105,10 +83,6 @@
 
     --date-font-size: 100%;
 
-    --channel-container-left-offset: -18vw;
-    --channel-width: 21vh;
-    --channel-container-width: 135vw;
-    --channel-container-height: 80vh;
   }
 }
 

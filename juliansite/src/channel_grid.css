@@ -7,34 +7,23 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
-    
-    /* border: 2px solid red; */
 }
 
 .channel-grid {
     position: relative;
-    display: flex;
+    display: grid;
     height: 100%;
-    flex-wrap: wrap;
-    border: 2px solid gold;
-    flex-grow: 2;
-   
     align-content: center;
-    /* gap: 0.5vh 0.5vh; Desktop */
     gap: 0.0vh;
-    /* border: 2px solid green; */
-    /* max-width: 80vw; */
 }
 
 
 .channel-column {
     position: relative;
-    /* gap: 0.5vh; desktop */
     width: var(--channel-width);
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex-grow: 1;
-    border: 2px solid purple;
     min-width: var(--channel-width);
 }

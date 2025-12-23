@@ -4,27 +4,36 @@ import './channel_grid.css'
 import channelMetadata from "./channelMetadata.json"
 
 const channelSizingLayout = {
-    "750": {
-        "numChannelsColumn": 5,
-        "numChannelsGrid": 5, 
+    "550": {
+        "numChannelsColumn": 4,
+        "numChannelsGrid": 4, 
+        "numGridColumns": 1,
     },
-    "1250": {
-        "numChannelsColumn": 5,
-        "numChannelsGrid": 10, 
+    "1200": {
+        "numChannelsColumn": 4,
+        "numChannelsGrid": 8, 
+        "numGridColumns": 2,
+    },
+    "1850": {
+        "numChannelsColumn": 3,
+        "numChannelsGrid": 9, 
+        "numGridColumns": 3,
     },
      "7000": {
         "numChannelsColumn": 3,
         "numChannelsGrid": 12, 
+        "numGridColumns": 4,
     },
 
 }
-//Arbitrary beginning values for channel map function
+// arbitrary beginning values for channel map function
 const channelKeyLeftColumnBegin = 0;
 const channelKeyGridBegin = 20;
 const channelKeyRightColumnBegin = 70;
 
-const scroll_index = 1;
+const scroll_index = 0;
 
+// actively track window resizing
 function useWindowSize() {
     const [size, setSize] = useState([0, 0]);
 
@@ -39,8 +48,8 @@ function useWindowSize() {
     return size;
 }
 
+// returns number of channels in grid based on window width
 function getGridSize(window_width) {
-
     for (const [key,value] of Object.entries(channelSizingLayout)) {
         if (window_width <= key ) {
             return value["numChannelsGrid"];
@@ -51,6 +60,7 @@ function getGridSize(window_width) {
     return keys[keys.length - 1]["numChannelsGrid"];
 }
 
+// returns number of channels in each column based on window width
 function getColumnSize(window_width){
     for (const [key,value] of Object.entries(channelSizingLayout)) {
         if (window_width <= key ) {
@@ -62,17 +72,33 @@ function getColumnSize(window_width){
     return keys[keys.length - 1]["numChannelsColumn"];
 }
 
+// returns number of columns based on window width
+function getGridColumnCount(window_width) {
+    for (const [key,value] of Object.entries(channelSizingLayout)) {
+        if (window_width <= key ) {
+            return value["numGridColumns"];
+        }
+    }
+
+    const keys = Object.keys(channelSizingLayout);
+    return keys[keys.length - 1]["numGridColumns"];
+}
+
 export default function ChannelGrid({ channelState, setChannelState }) {
     const [width, height] = useWindowSize();
     const num_grid_channels = getGridSize(width);
     const num_column_channels = getColumnSize(width);
+    const num_grid_columns = getGridColumnCount(width);
 
     return (
         <div className="channels-container">
 
             {/* Left channel column, not rendered if on first page */}
             <div className="channel-column"
-                style={{visibility: scroll_index === 0 ? "hidden": "visible"}}>
+                style={{visibility: scroll_index === 0 ? "hidden": "visible",
+                        alignItems: "flex-end"
+                       }
+                }>
                 <div>
                     {[...Array(num_column_channels).keys()].map(
                         (item, index) => <Channel key={channelKeyLeftColumnBegin + index}
@@ -85,12 +111,10 @@ export default function ChannelGrid({ channelState, setChannelState }) {
 
             {/* central channel column */}
             <div className="channel-grid"
-                 style={{justifyContent: scroll_index === 0 
-                            ? "flex-end" 
-                            : scroll_index === channelMetadata.const.number_of_pages - 1 
-                            ? "flex-start" 
-                            : "center"
-                 }}>
+                 style={{
+                         gridTemplateColumns: `repeat(${num_grid_columns}, 1fr)`
+                        }
+                 }>
               
                 {/* Channels listed in json*/}
                 {channelMetadata.channels.map(
@@ -115,7 +139,8 @@ export default function ChannelGrid({ channelState, setChannelState }) {
 
             {/* Right channel column, not rendered if on last page */}
             <div className="channel-column"
-                 style={{visibility: scroll_index === channelMetadata.const.number_of_pages - 1 ? "hidden": "visible"}}>
+                 style={{visibility: scroll_index === channelMetadata.const.number_of_pages - 1 ? "hidden": "visible"
+                }}>
                 <div>
                     {[...Array(num_column_channels).keys()].map(
                         (item, index) => <Channel key={channelKeyRightColumnBegin + index}
