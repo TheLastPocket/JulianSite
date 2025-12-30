@@ -1,0 +1,160 @@
+.next-container{
+    position: absolute;
+
+    top: 50%;
+    transform: translate(-50%, -54%);
+    z-index: var(--arrow-z);
+    width: 29vh;
+    height: 30%;
+    
+}
+
+.next-arrow-hitbox {
+    position: absolute;
+    
+    top: 50%;
+    transform: translate(0%, -50%);
+    left: 57%;
+
+    height: 50%;
+    width: 40%;
+    
+}
+/* TODO: MOVE MOVEMENT TO STYLE IN OTHER FILE*/
+.next-arrow{
+    position: absolute;
+    left: 0;
+    height: 90%;
+    width: 45%;
+
+    top: 50%;
+    transform: translate(0%, -50%);
+    transform-origin: right center;
+
+    animation: arrow-bounce 0.91s ease-in-out infinite; /* found time by timing menu */
+}
+
+.next-arrow.enter {
+    animation:
+        arrow-bounce 0.91s ease-in-out infinite,
+        arrow-hover 0.1s ease-in-out 1;
+}
+
+.next-arrow.leave {
+    animation:
+        arrow-bounce 0.91s ease-in-out infinite,
+        arrow-sign-wobble 0.2s ease-in-out 1;
+}
+
+.next-sign-hitbox {
+    position: absolute;
+
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+}
+
+.next-sign{
+    position: absolute;
+    top: 50%;
+    transform: translate(12%, -50%);
+
+    left: 0;
+
+    height: 85%;
+    visibility: visible;
+    z-index: var(--arrow-sign-z);
+
+    transform-origin: center;
+
+
+    animation: arrow-bounce 0.91s ease-in-out infinite;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.next-sign.visible{
+    opacity: 1;
+    pointer-events: auto;
+    transform-origin: center;
+    animation:
+        arrow-bounce 0.91s ease-in-out infinite,
+        sign-enter 0.066s ease-in-out 1,
+        sign-enter-wobble 0.067s 0.066s ease-in-out 1;
+}
+
+.next-sign.hidden{
+    animation: 
+        arrow-bounce 0.91s ease-in-out infinite,
+        sign-leave 0.05s ease-in-out forwards;
+}
+
+@keyframes arrow-hover {
+    30% {
+        height: 55%;
+    }
+}
+
+@keyframes arrow-sign-wobble {
+    15% {
+        transform: translate(12%, -50%) 
+            scale(0.72, 1);
+    }
+  
+}
+
+@keyframes sign-enter {
+    0% {
+        top: 6%;
+        left: 22%;
+        scale: 0.3;
+    }
+}
+
+/* By observation the sign slightly wobbles 
+ after fully enlarging*/
+@keyframes sign-enter-wobble {
+    0% {
+        transform: translate(12%, -50%);
+        transform-origin: right center;
+    }
+
+    50% {
+        transform: translate(12%, -50%) 
+            scale(0.9, 1);
+        
+        transform-origin: right center;
+    }
+
+    100% {
+        transform: translate(12%, -50%);
+        transform-origin: right center;
+    }
+}
+
+@keyframes sign-leave {
+    0% {
+        opacity: 1;
+        transform: translate(12%, -50%);
+        transform-origin: right center;
+    }
+
+    99% {
+        opacity: 0.3;
+        transform: translate(12%, -50%)
+            scale(0.3, 0.5);
+        transform-origin: right center;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes arrow-bounce {
+    40% {
+        translate: 0.3vw 0vh;
+    }
+}

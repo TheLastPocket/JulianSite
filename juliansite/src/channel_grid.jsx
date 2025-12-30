@@ -2,6 +2,7 @@ import { useState, useLayoutEffect, useEffect, useRef } from 'react'
 import Channel from './channel.jsx'
 import './channel_grid.css'
 import channelMetadata from "./channelMetadata.json"
+import NextArrow from './arrow.jsx'
 
 const channelSizingLayout = {
     "550": {
@@ -142,6 +143,8 @@ export default function ChannelGrid({ channelState, setChannelState }) {
                  style={{visibility: scroll_index === channelMetadata.const.number_of_pages - 1 ? "hidden": "visible"
                 }}>
                 <div>
+                    <NextArrow scroll_index={scroll_index} 
+                        className="next-arrow"/>
                     {[...Array(num_column_channels).keys()].map(
                         (item, index) => <Channel key={channelKeyRightColumnBegin + index}
                                         id={channelMetadata.channels.length - 1} 

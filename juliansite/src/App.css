@@ -15,6 +15,8 @@
   --menu-button-tooltip-text-z: 6;
   --channel-select-background-unselected-z: 0;
   --channel-select-background-selected-z: 7;
+  --arrow-z: 8;
+  --arrow-sign-z: 9;
 
   --bottom-bar-height: 27vh;
 
