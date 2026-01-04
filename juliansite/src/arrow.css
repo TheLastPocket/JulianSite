@@ -1,27 +1,31 @@
-.next-container{
-    position: absolute;
-
-    top: 50%;
-    transform: translate(-50%, -54%);
-    z-index: var(--arrow-z);
+.next-container, .prev-container{
+    z-index: var(--menu-arrow-z);
     width: 29vh;
     height: 30%;
-    
 }
 
-.next-arrow-hitbox {
+.next-container {
+    transform: translate(-50%, -54%);
+}
+
+.prev-container {
+    right: 0;
+    transform: translate(15%, -54%);
+}
+
+.next-arrow-hitbox, .prev-arrow-hitbox {
     position: absolute;
     
     top: 50%;
     transform: translate(0%, -50%);
     left: 57%;
-
+    
     height: 50%;
     width: 40%;
     
 }
 /* TODO: MOVE MOVEMENT TO STYLE IN OTHER FILE*/
-.next-arrow{
+.next-arrow, .prev-arrow{
     position: absolute;
     left: 0;
     height: 90%;
@@ -34,29 +38,31 @@
     animation: arrow-bounce 0.91s ease-in-out infinite; /* found time by timing menu */
 }
 
-.next-arrow.enter {
+.next-arrow.enter, .prev-arrow.enter {
     animation:
         arrow-bounce 0.91s ease-in-out infinite,
         arrow-hover 0.1s ease-in-out 1;
 }
 
-.next-arrow.leave {
+/*TODO: Get rid of second magic numbers with sass*/
+
+.next-arrow.leave , .prev-arrow.leave{
     animation:
         arrow-bounce 0.91s ease-in-out infinite,
         arrow-sign-wobble 0.2s ease-in-out 1;
 }
 
-.next-sign-hitbox {
+.next-sign-hitbox, .prev-sign-hitbox{
     position: absolute;
 
     left: 0;
 
     height: 100%;
     width: 100%;
-
+    border: 2px solid red;
 }
 
-.next-sign{
+.next-sign, .prev-sign{
     position: absolute;
     top: 50%;
     transform: translate(12%, -50%);
@@ -75,7 +81,7 @@
     pointer-events: none;
 }
 
-.next-sign.visible{
+.next-sign.visible, .prev-sign.visible{
     opacity: 1;
     pointer-events: auto;
     transform-origin: center;
@@ -85,7 +91,16 @@
         sign-enter-wobble 0.067s 0.066s ease-in-out 1;
 }
 
-.next-sign.hidden{
+.next-sign.visible.click, .prev-sign.visible.click{
+    animation:
+        arrow-bounce 0.91s ease-in-out infinite,
+        sign-enter 0.066s ease-in-out 1,
+        sign-enter-wobble 0.067s 0.066s ease-in-out 1,
+        /* sign-click 0.4s ease-in-out forwards; */
+        sign-click 0.3s ease-in-out forwards;
+}
+
+.next-sign.hidden, .prev-sign.hidden{
     animation: 
         arrow-bounce 0.91s ease-in-out infinite,
         sign-leave 0.05s ease-in-out forwards;
@@ -112,6 +127,7 @@
         scale: 0.3;
     }
 }
+
 
 /* By observation the sign slightly wobbles 
  after fully enlarging*/
@@ -150,6 +166,25 @@
 
     100% {
         opacity: 0;
+    }
+}
+
+@keyframes sign-click {
+    0% {
+        /* filter: brightness(0); */
+    }
+
+    15% {
+        /* brightness:(1) invert(0) */
+        filter: brightness(500%);
+    }
+
+    /* 35.5% {
+        filter: brightness(500%);
+    } */
+
+    100% {
+        /* filter: brightness(0); */
     }
 }
 

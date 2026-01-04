@@ -26,8 +26,13 @@
     justify-content: center;
     flex-grow: 1;
     min-width: var(--channel-width);
-
+    border: 2px solid purple;
 }
 
 /* .next-arrow{
+    position: absolute;
+
+    top: 50%;
+    transform: translate(-50%, -54%);
+    z-index: var(--arrow-z);
 } */

@@ -106,7 +106,7 @@
 .bottom-bar-left {
     position: relative;
     flex-grow: 0;
-    margin-right: -1px;
+    /* margin-right: 0px; */
     /*Counteracts weird 1px flexbox gap*/
 }
 
@@ -124,7 +124,7 @@
 .bottom-bar-right-div {
     position: relative;
     flex-grow: 0;
-    margin-left: -1px;
+    /* margin-left: -1px; */
     /*Counteracts weird 1px flexbox gap*/
 }
 

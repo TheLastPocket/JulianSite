@@ -2,7 +2,11 @@ import { useState, useLayoutEffect, useEffect, useRef } from 'react'
 import Channel from './channel.jsx'
 import './channel_grid.css'
 import channelMetadata from "./channelMetadata.json"
-import NextArrow from './arrow.jsx'
+import Arrow from './arrow.jsx'
+import nextArrow from './assets/menu/NextArrow.png'
+import prevArrow from './assets/menu/PrevArrow.png'
+import nextSign from './assets/menu/NextSign.png'
+import prevSign from './assets/menu/PrevSign.png'
 
 const channelSizingLayout = {
     "550": {
@@ -91,6 +95,7 @@ export default function ChannelGrid({ channelState, setChannelState }) {
     const num_column_channels = getColumnSize(width);
     const num_grid_columns = getGridColumnCount(width);
 
+
     return (
         <div className="channels-container">
 
@@ -101,6 +106,14 @@ export default function ChannelGrid({ channelState, setChannelState }) {
                        }
                 }>
                 <div>
+                    <Arrow 
+                        direction={"prev"}
+                        arrowSrc={prevArrow}
+                        signSrc={prevSign}
+                        scroll_index={scroll_index} 
+                        style={{position: "absolute", 
+                            top: "50%",
+                            }}/>
                     {[...Array(num_column_channels).keys()].map(
                         (item, index) => <Channel key={channelKeyLeftColumnBegin + index}
                                         id={channelMetadata.channels.length - 1} 
@@ -143,8 +156,12 @@ export default function ChannelGrid({ channelState, setChannelState }) {
                  style={{visibility: scroll_index === channelMetadata.const.number_of_pages - 1 ? "hidden": "visible"
                 }}>
                 <div>
-                    <NextArrow scroll_index={scroll_index} 
-                        className="next-arrow"/>
+                    <Arrow direction={"next"}
+                        arrowSrc={nextArrow}
+                        signSrc={nextSign}
+                        scroll_index={scroll_index} 
+                        style={{position: "absolute", 
+                            top: "50%"}}/>
                     {[...Array(num_column_channels).keys()].map(
                         (item, index) => <Channel key={channelKeyRightColumnBegin + index}
                                         id={channelMetadata.channels.length - 1} 
