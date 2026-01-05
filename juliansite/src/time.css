@@ -71,12 +71,16 @@
 
 .date {
     position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+
     font-family: 'Rodin', sans-serif;
+    font-size: var(--date-font-size);
+
     z-index: var(--date-z);
     color: #727472;
-    left: 50%;
-    font-size: var(--date-font-size);
+    
     white-space: nowrap;
-    transform: translateX(-50%);
-    top: 27%;
+    border:2px solid red;
 }

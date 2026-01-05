@@ -4,7 +4,7 @@ import channelMetadata from "./channelMetadata.json"
 import menuHoverSound from './assets/sounds/MenuHover.mp3'
 import arrowClickSound from './assets/sounds/arrowClick.mp3'
 
-export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, style}) {
+export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, onScroll, style}) {
 
     const signEnterTime = useRef(null);
     const [arrowEntered, setArrowEntered] = useState(false);
@@ -51,7 +51,7 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, style
             const arrow_click_sound = new Audio(arrowClickSound);
             arrow_click_sound.play();
             setArrowClicked(true);
-            
+            onScroll();
             setTimeout(() => {
                 setArrowClicked(false);   
             }, 400);
@@ -71,7 +71,8 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, style
             </div>
             <div className={`${direction}-arrow-hitbox`}
                 onMouseEnter={handleArrowEnter}
-                onMouseLeave={handleArrowLeave}>
+                onMouseLeave={handleArrowLeave}
+                onClick={handleSignClick}>
                     <img src={arrowSrc}
                     className={`${direction}-arrow ${(arrowEntered) ? "enter" : ""} 
                         ${!signEntered ? "leave" : ""}`}/>

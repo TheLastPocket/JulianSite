@@ -15,6 +15,12 @@
     height: 100%;
     align-content: center;
     gap: 0.0vh;
+    border:2px solid purple;
+}
+
+.channel-grid.next {
+    animation:
+        grid-scroll-left 0.5s ease-in-out forwards;
 }
 
 
@@ -26,12 +32,12 @@
     justify-content: center;
     flex-grow: 1;
     min-width: var(--channel-width);
+    border:2px solid red;
 }
 
-/* .next-arrow{
-    position: absolute;
-
-    top: 50%;
-    transform: translate(-50%, -54%);
-    z-index: var(--arrow-z);
-} */
+@keyframes grid-scroll-left {
+    100%{
+        transform: translate(-100%, 0%);
+    }
+    
+}

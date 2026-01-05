@@ -36,11 +36,13 @@ const channelKeyLeftColumnBegin = 0;
 const channelKeyGridBegin = 20;
 const channelKeyRightColumnBegin = 70;
 
-const scroll_index = 1;
+const scroll_index = 0;
 
 // actively track window resizing
 function useWindowSize() {
     const [size, setSize] = useState([0, 0]);
+
+
 
     useLayoutEffect(() => {
         function updateSize() {
@@ -89,15 +91,25 @@ function getGridColumnCount(window_width) {
     return keys[keys.length - 1]["numGridColumns"];
 }
 
-export default function ChannelGrid({ channelState, setChannelState }) {
+export default function ChannelGrid({ channelState, setChannelState, }) {
     const [width, height] = useWindowSize();
+    const [next, setNext] = useState(false);
     const num_grid_channels = getGridSize(width);
     const num_column_channels = getColumnSize(width);
     const num_grid_columns = getGridColumnCount(width);
 
+    const handleNext = () => {
+        setNext(true);
+        setTimeout(() => {
+            setNext(false);   
+        }, 400);
+    }
 
     return (
         <div className="channels-container">
+            <div className="channel-grid-prev">
+
+            </div>
 
             {/* Left channel column, not rendered if on first page */}
             <div className="channel-column"
@@ -124,7 +136,7 @@ export default function ChannelGrid({ channelState, setChannelState }) {
             </div>
 
             {/* central channel column */}
-            <div className="channel-grid"
+            <div className = {`channel-grid ${next ? "next" : ""}`}
                  style={{
                          gridTemplateColumns: `repeat(${num_grid_columns}, 1fr)`
                         }
@@ -152,7 +164,7 @@ export default function ChannelGrid({ channelState, setChannelState }) {
             </div>
 
             {/* Right channel column, not rendered if on last page */}
-            <div className="channel-column"
+            <div className= "channel-column"
                  style={{visibility: scroll_index === channelMetadata.const.number_of_pages - 1 ? "hidden": "visible"
                 }}>
                 <div>
@@ -160,6 +172,9 @@ export default function ChannelGrid({ channelState, setChannelState }) {
                         arrowSrc={nextArrow}
                         signSrc={nextSign}
                         scroll_index={scroll_index} 
+                        onScroll={() => {
+                            handleNext();
+                        }}
                         style={{position: "absolute", 
                             top: "50%"}}/>
                     {[...Array(num_column_channels).keys()].map(
@@ -169,6 +184,9 @@ export default function ChannelGrid({ channelState, setChannelState }) {
                                         setChannelState={setChannelState} />
                     )}
                 </div>
+            </div>
+            <div className="channel-grid-next">
+
             </div>
         </div >
     )
