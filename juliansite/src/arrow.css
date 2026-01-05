@@ -10,100 +10,156 @@
 
 .prev-container {
     right: 0;
-    transform: translate(15%, -54%);
+    transform: translate(50%, -54%);
 }
 
 .next-arrow-hitbox, .prev-arrow-hitbox {
     position: absolute;
-    
     top: 50%;
-    transform: translate(0%, -50%);
-    left: 57%;
+    transform: translateY(-50%);
     
     height: 50%;
     width: 40%;
-    
 }
+
+.next-arrow-hitbox{
+    left: 57%;
+}
+
+.prev-arrow-hitbox {
+    right: 59%; /*TODO: fix why this is slightlly diff from above*/
+}
+
 /* TODO: MOVE MOVEMENT TO STYLE IN OTHER FILE*/
 .next-arrow, .prev-arrow{
     position: absolute;
-    left: 0;
     height: 90%;
     width: 45%;
 
     top: 50%;
-    transform: translate(0%, -50%);
-    transform-origin: right center;
-
-    animation: arrow-bounce 0.91s ease-in-out infinite; /* found time by timing menu */
+    transform: translate(0%, -50%);   
 }
 
-.next-arrow.enter, .prev-arrow.enter {
+.next-arrow {
+    left: 0;
+    transform-origin: right center;
+    animation: next-arrow-bounce 0.91s ease-in-out infinite; /*found time by timing menu */
+}
+
+.prev-arrow {
+    right: 0;
+    transform-origin: left center;
+    animation: prev-arrow-bounce 0.91s ease-in-out infinite;
+}
+
+.next-arrow.enter {
     animation:
-        arrow-bounce 0.91s ease-in-out infinite,
+        next-arrow-bounce 0.91s ease-in-out infinite,
+        arrow-hover 0.1s ease-in-out 1;
+}
+
+.prev-arrow.enter {
+    animation:
+        prev-arrow-bounce 0.91s ease-in-out infinite,
         arrow-hover 0.1s ease-in-out 1;
 }
 
 /*TODO: Get rid of second magic numbers with sass*/
 
-.next-arrow.leave , .prev-arrow.leave{
+.next-arrow.leave {
     animation:
-        arrow-bounce 0.91s ease-in-out infinite,
-        arrow-sign-wobble 0.2s ease-in-out 1;
+        next-arrow-bounce 0.91s ease-in-out infinite,
+        next-arrow-sign-wobble 0.2s ease-in-out 1;
+}
+
+.prev-arrow.leave {
+    animation:
+        prev-arrow-bounce 0.91s ease-in-out infinite,
+        prev-arrow-sign-wobble 0.2s ease-in-out 1;
 }
 
 .next-sign-hitbox, .prev-sign-hitbox{
     position: absolute;
-
-    left: 0;
+    /* right: 0; */
 
     height: 100%;
     width: 100%;
-    border: 2px solid red;
 }
 
 .next-sign, .prev-sign{
     position: absolute;
     top: 50%;
-    transform: translate(12%, -50%);
-
-    left: 0;
 
     height: 85%;
     visibility: visible;
-    z-index: var(--arrow-sign-z);
+    z-index: var(--menu-arrow-sign-z);
 
     transform-origin: center;
 
-
-    animation: arrow-bounce 0.91s ease-in-out infinite;
+    
     opacity: 0;
     pointer-events: none;
+}
+
+.next-sign {
+    left: 0;
+    transform: translate(12%, -50%);
+    /* animation: next-arrow-bounce 0.91s ease-in-out infinite; */
+}
+
+
+.prev-sign{
+    right: 0;
+    transform: translate(-16%, -50%);
 }
 
 .next-sign.visible, .prev-sign.visible{
     opacity: 1;
     pointer-events: auto;
     transform-origin: center;
-    animation:
-        arrow-bounce 0.91s ease-in-out infinite,
-        sign-enter 0.066s ease-in-out 1,
-        sign-enter-wobble 0.067s 0.066s ease-in-out 1;
+    
 }
 
-.next-sign.visible.click, .prev-sign.visible.click{
+.next-sign.visible {
     animation:
-        arrow-bounce 0.91s ease-in-out infinite,
-        sign-enter 0.066s ease-in-out 1,
-        sign-enter-wobble 0.067s 0.066s ease-in-out 1,
-        /* sign-click 0.4s ease-in-out forwards; */
+        next-arrow-bounce 0.91s ease-in-out infinite,
+        next-sign-enter 0.066s ease-in-out 1,
+        next-sign-enter-wobble 0.067s 0.066s ease-in-out 1;
+}
+
+.prev-sign.visible{
+    animation:
+        prev-arrow-bounce 0.91s ease-in-out infinite,
+        prev-sign-enter 0.066s ease-in-out 1,
+        prev-sign-enter-wobble 0.067s 0.066s ease-in-out 1;
+}
+
+.next-sign.visible.click {
+    animation:
+        next-arrow-bounce 0.91s ease-in-out infinite,
+        next-sign-enter 0.066s ease-in-out 1,
+        next-sign-enter-wobble 0.067s 0.066s ease-in-out 1,
         sign-click 0.3s ease-in-out forwards;
 }
 
-.next-sign.hidden, .prev-sign.hidden{
+.prev-sign.visible.click{
+    animation:
+        prev-arrow-bounce 0.91s ease-in-out infinite,
+        prev-sign-enter 0.066s ease-in-out 1,
+        prev-sign-enter-wobble 0.067s 0.066s ease-in-out 1,
+        sign-click 0.3s ease-in-out forwards;
+}
+
+.next-sign.hidden {
     animation: 
-        arrow-bounce 0.91s ease-in-out infinite,
-        sign-leave 0.05s ease-in-out forwards;
+        next-arrow-bounce 0.91s ease-in-out infinite,
+        next-sign-leave 0.05s ease-in-out forwards;
+}
+
+.prev-sign.hidden{
+    animation: 
+        prev-arrow-bounce 0.91s ease-in-out infinite,
+        prev-sign-leave 0.05s ease-in-out forwards;
 }
 
 @keyframes arrow-hover {
@@ -112,15 +168,21 @@
     }
 }
 
-@keyframes arrow-sign-wobble {
+@keyframes next-arrow-sign-wobble {
     15% {
         transform: translate(12%, -50%) 
             scale(0.72, 1);
     }
-  
 }
 
-@keyframes sign-enter {
+@keyframes prev-arrow-sign-wobble {
+    15% {
+        transform: translate(-16%, -50%)
+            scale(0.72, 1);
+    }
+}
+
+@keyframes next-sign-enter {
     0% {
         top: 6%;
         left: 22%;
@@ -128,10 +190,17 @@
     }
 }
 
+@keyframes prev-sign-enter {
+   0% {
+        top: 6%;
+        right: 22%;
+        scale: 0.3;
+    } 
+}
 
 /* By observation the sign slightly wobbles 
  after fully enlarging*/
-@keyframes sign-enter-wobble {
+@keyframes next-sign-enter-wobble {
     0% {
         transform: translate(12%, -50%);
         transform-origin: right center;
@@ -150,7 +219,26 @@
     }
 }
 
-@keyframes sign-leave {
+@keyframes prev-sign-enter-wobble {
+    0% {
+        transform: translate(-16%, -50%);
+        transform-origin: left center;
+    }
+
+    50% {
+        transform: translate(-16%, -50%) 
+            scale(0.9, 1);
+        
+        transform-origin: left center;
+    }
+
+    100% {
+        transform: translate(-16%, -50%);
+        transform-origin: left center;
+    }
+}
+
+@keyframes next-sign-leave {
     0% {
         opacity: 1;
         transform: translate(12%, -50%);
@@ -162,6 +250,25 @@
         transform: translate(12%, -50%)
             scale(0.3, 0.5);
         transform-origin: right center;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes prev-sign-leave {
+    0% {
+        opacity: 1;
+        transform: translate(-16%, -50%);
+        transform-origin: left center;
+    }
+
+    99% {
+        opacity: 0.3;
+        transform: translate(-16%, -50%)
+            scale(0.3, 0.5);
+        transform-origin: left center;
     }
 
     100% {
@@ -188,8 +295,14 @@
     }
 }
 
-@keyframes arrow-bounce {
+@keyframes next-arrow-bounce {
     40% {
         translate: 0.3vw 0vh;
+    }
+}
+
+@keyframes prev-arrow-bounce {
+    40% {
+        translate: -0.3vh 0vh;
     }
 }

@@ -26,7 +26,6 @@
     justify-content: center;
     flex-grow: 1;
     min-width: var(--channel-width);
-    border: 2px solid purple;
 }
 
 /* .next-arrow{

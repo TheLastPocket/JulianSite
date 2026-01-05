@@ -36,7 +36,7 @@ const channelKeyLeftColumnBegin = 0;
 const channelKeyGridBegin = 20;
 const channelKeyRightColumnBegin = 70;
 
-const scroll_index = 0;
+const scroll_index = 1;
 
 // actively track window resizing
 function useWindowSize() {
