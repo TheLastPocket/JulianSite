@@ -31,21 +31,13 @@
 
 
   --channel-width: 36vh; /*15.2*/
-  --channel-container-left-offset: -10vw;
-  --channel-container-width: 120vw;
+  --channel-container-left-offset:-18vw;
+  --channel-container-width: 176vw;
   --channel-container-height: 65vh;
   /*This is for icon*/
   /* --ib-aspect-ratio: 832/456; THIS IS FOR THE BANNER*/
 
 }
-
-@media (max-width: 1100px) {
-  :root {
-    --channel-width: 28vh;
-    --channel-container-height: 75vh;
-  }
-}
-
 
 @media (max-width: 1200px) {
   :root {
@@ -60,6 +52,14 @@
   }
 }
 
+@media (max-width: 1440px) {
+  :root {
+    --channel-width: 28vh;
+    --channel-container-height: 75vh;
+  }
+}
+
+
 @media (max-width: 560px) {
   :root {
     --bottom-bar-height: 13vh;
@@ -67,7 +67,7 @@
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 620px) {
   :root {
     --channel-width: 28vh;
     --channel-container-height: 80vh;

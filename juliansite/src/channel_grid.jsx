@@ -9,12 +9,12 @@ import nextSign from './assets/menu/NextSign.png'
 import prevSign from './assets/menu/PrevSign.png'
 
 const channelSizingLayout = {
-    "550": {
+    "620": {
         "numChannelsColumn": 4,
         "numChannelsGrid": 4, 
         "numGridColumns": 1,
     },
-    "1200": {
+    "1440": {
         "numChannelsColumn": 4,
         "numChannelsGrid": 8, 
         "numGridColumns": 2,
@@ -36,7 +36,7 @@ const channelKeyLeftColumnBegin = 0;
 const channelKeyGridBegin = 20;
 const channelKeyRightColumnBegin = 70;
 
-const scroll_index = 0;
+const scroll_index = 1;
 
 // actively track window resizing
 function useWindowSize() {
@@ -107,87 +107,27 @@ export default function ChannelGrid({ channelState, setChannelState, }) {
 
     return (
         <div className="channels-container">
-            <div className="channel-grid-prev">
-
-            </div>
-
-            {/* Left channel column, not rendered if on first page */}
-            <div className="channel-column"
-                style={{visibility: scroll_index === 0 ? "hidden": "visible",
-                        alignItems: "flex-end"
-                       }
-                }>
-                <div>
-                    <Arrow 
-                        direction={"prev"}
-                        arrowSrc={prevArrow}
-                        signSrc={prevSign}
-                        scroll_index={scroll_index} 
-                        style={{position: "absolute", 
-                            top: "50%",
-                            }}/>
-                    {[...Array(num_column_channels).keys()].map(
-                        (item, index) => <Channel key={channelKeyLeftColumnBegin + index}
-                                        id={channelMetadata.channels.length - 1} 
-                                        channelState={channelState} 
-                                        setChannelState={setChannelState} />
-                    )}
-                </div>
-            </div>
-
-            {/* central channel column */}
-            <div className = {`channel-grid ${next ? "next" : ""}`}
-                 style={{
-                         gridTemplateColumns: `repeat(${num_grid_columns}, 1fr)`
+            {[...Array(channelMetadata.const.number_of_pages)].map((_, gridIndex) => (
+                <div 
+                    className = {`channel-grid-${gridIndex + 1}`}
+                    key = {gridIndex} 
+                    style={{
+                        display: Math.abs(gridIndex - scroll_index) < 2 ? "visible" : "none",
+                        gridTemplateColumns: `repeat(${num_grid_columns}, 1fr)`
                         }
                  }>
-              
-                {/* Channels listed in json*/}
-                {channelMetadata.channels.map(
-                    (item, index) => (
-                    index < num_grid_channels && (
-                        <Channel key = {channelKeyGridBegin + index} 
-                                 id={index} 
-                                 channelState={channelState} 
-                                 setChannelState={setChannelState} />
-                    )
-                ))}
-
-                {/* Empty channels after to fill up space */}
-                {[...Array(Math.max(0, num_grid_channels - channelMetadata.channels.length)).keys()].map(
-                    (item, index) => <Channel key = {channelKeyGridBegin + channelMetadata.channels.length + index}
-                                    id={channelMetadata.channels.length - 1} 
-                                    channelState={channelState} 
-                                    setChannelState={setChannelState} />
-                )}
-
-            </div>
-
-            {/* Right channel column, not rendered if on last page */}
-            <div className= "channel-column"
-                 style={{visibility: scroll_index === channelMetadata.const.number_of_pages - 1 ? "hidden": "visible"
-                }}>
-                <div>
-                    <Arrow direction={"next"}
-                        arrowSrc={nextArrow}
-                        signSrc={nextSign}
-                        scroll_index={scroll_index} 
-                        onScroll={() => {
-                            handleNext();
-                        }}
-                        style={{position: "absolute", 
-                            top: "50%"}}/>
-                    {[...Array(num_column_channels).keys()].map(
-                        (item, index) => <Channel key={channelKeyRightColumnBegin + index}
-                                        id={channelMetadata.channels.length - 1} 
-                                        channelState={channelState} 
-                                        setChannelState={setChannelState} />
-                    )}
+                        {[...Array(num_grid_channels)].map((_, channelIndex) => (
+                            <Channel 
+                                key = {channelKeyGridBegin + channelIndex + (num_grid_channels * gridIndex)} 
+                                id={channelIndex + (num_grid_channels * gridIndex) < channelMetadata.channels.length ? 
+                                        channelIndex + (num_grid_channels * gridIndex) :
+                                          (channelMetadata.channels.length - 1)  
+                                    } 
+                                channelState={channelState} 
+                                setChannelState={setChannelState} />
+                        ))}
                 </div>
-            </div>
-            <div className="channel-grid-next">
-
-            </div>
+            ))}
         </div >
     )
 }
