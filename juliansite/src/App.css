@@ -31,7 +31,7 @@
 
 
   --channel-width: 36vh; /*15.2*/
-  --channel-container-left-offset:-18vw;
+  --channel-container-left-offset: 10vw;
   --channel-container-width: 176vw;
   --channel-container-height: 65vh;
   /*This is for icon*/
