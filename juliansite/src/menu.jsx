@@ -9,19 +9,26 @@ import homeMenuBottomRight from './assets/menu/homeMenuBottomRight.png'
 import homeMenuBackground from './assets/menu/HomeMenuBackground.jpg'
 import MailButton from './assets/menu/MailButton.png'
 import './menu.css'
-
+import Arrow from './arrow.jsx'
 
 import menuHoverSound from './assets/sounds/MenuHover.mp3'
 import tooltipSound from './assets/sounds/tooltipSound.mp3'
 
 import channelSelectBackground from './assets/channel/ChannelSelectBackground.png'
+import nextArrow from './assets/menu/NextArrow.png'
+import prevArrow from './assets/menu/PrevArrow.png'
+import nextSign from './assets/menu/NextSign.png'
+import prevSign from './assets/menu/PrevSign.png'
 
-export default function Menu({ channelState }) {
+export default function Menu({ channelState , scrollState, setScrollState}) {
     const tooltipTime = useRef(null);
     const tooltipShow = useRef(new Audio(tooltipSound));
 
     const [showColon, setShowColon] = useState(true);
     const [tooltipVisible, setTooltipVisible] = useState(false);
+    const [next, setNext] = useState(false);
+
+    const scroll_index = 1;
 
     // Colon flashing every second
     useEffect(() => {
@@ -33,6 +40,14 @@ export default function Menu({ channelState }) {
             clearInterval(colonInterval);
         };
     }, []);
+
+    const handleNext = () => {
+        setNext(true);
+        
+        setTimeout(() => {
+            setNext(false);   
+        }, 400);
+    }
 
     //Hovering over button on bottom bar
     const handleMenuHover = () => {
@@ -64,6 +79,33 @@ export default function Menu({ channelState }) {
 
             <div className={`combined-home-screen ${channelState.state}`}>
                 <img src={homeMenuBackground} alt="Background" className="background" />
+
+                <Arrow 
+                direction={"prev"}
+                arrowSrc={prevArrow}
+                signSrc={prevSign}
+                scroll_index={scroll_index} 
+                style= {{
+                    position: "absolute",
+                    top: "43vh",
+                    left: "0vw"
+                }}
+                />
+
+                <Arrow direction={"next"}
+                            arrowSrc={nextArrow}
+                            signSrc={nextSign}
+                            scroll_index={scroll_index}
+                            scrollState={scrollState}
+                            setScrollState={setScrollState} 
+                            onClick={() => {
+                                handleNext();
+                            }}
+                            style={{
+                                position: "absolute", 
+                                right: "4.5vw",
+                                top: "25vh"
+                            }}/>
 
                 <div className="bottom">
                     <div className="bottom-bar">

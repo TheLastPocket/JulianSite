@@ -31,9 +31,13 @@
 
 
   --channel-width: 36vh; /*15.2*/
-  --channel-container-left-offset: 10vw;
+  --channel-container-left-offset: 6vw;
   --channel-container-width: 176vw;
   --channel-container-height: 65vh;
+
+  --next-arrow-home-x: -5%
+  
+  /* --next-arrow-home-y: 0 */
   /*This is for icon*/
   /* --ib-aspect-ratio: 832/456; THIS IS FOR THE BANNER*/
 

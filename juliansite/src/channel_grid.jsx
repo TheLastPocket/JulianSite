@@ -2,11 +2,6 @@ import { useState, useLayoutEffect, useEffect, useRef } from 'react'
 import Channel from './channel.jsx'
 import './channel_grid.css'
 import channelMetadata from "./channelMetadata.json"
-import Arrow from './arrow.jsx'
-import nextArrow from './assets/menu/NextArrow.png'
-import prevArrow from './assets/menu/PrevArrow.png'
-import nextSign from './assets/menu/NextSign.png'
-import prevSign from './assets/menu/PrevSign.png'
 
 const channelSizingLayout = {
     "620": {
@@ -93,20 +88,13 @@ function getGridColumnCount(window_width) {
 
 export default function ChannelGrid({ channelState, setChannelState, }) {
     const [width, height] = useWindowSize();
-    const [next, setNext] = useState(false);
     const num_grid_channels = getGridSize(width);
     const num_column_channels = getColumnSize(width);
     const num_grid_columns = getGridColumnCount(width);
 
-    const handleNext = () => {
-        setNext(true);
-        setTimeout(() => {
-            setNext(false);   
-        }, 400);
-    }
-
     return (
-        <div className="channels-container">
+        <div id="channels-container" className="channels-container">
+            
             {[...Array(channelMetadata.const.number_of_pages)].map((_, gridIndex) => (
                 <div 
                     className = {`channel-grid-${gridIndex + 1}`}
@@ -128,6 +116,8 @@ export default function ChannelGrid({ channelState, setChannelState, }) {
                         ))}
                 </div>
             ))}
+
+            
         </div >
     )
 }

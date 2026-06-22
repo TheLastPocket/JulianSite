@@ -1,11 +1,12 @@
 .next-container, .prev-container{
     z-index: var(--menu-arrow-z);
-    width: 29vh;
-    height: 30%;
+    /* width: 22%;
+    height: 30%; */
+    border:2px solid blue;
 }
 
 .next-container {
-    transform: translate(-50%, -54%);
+    /* transform: translate(-50%, -54%); */
 }
 
 .prev-container {
@@ -23,7 +24,8 @@
 }
 
 .next-arrow-hitbox{
-    left: 57%;
+    left: 57%; /*The hitbox is like this on the actal wii lol*/
+    border: 2px solid palevioletred;
 }
 
 .prev-arrow-hitbox {
@@ -33,9 +35,9 @@
 /* TODO: MOVE MOVEMENT TO STYLE IN OTHER FILE*/
 .next-arrow, .prev-arrow{
     position: absolute;
-    height: 90%;
+    height: 60%;
     width: 45%;
-
+    
     top: 50%;
     transform: translate(0%, -50%);   
 }
@@ -44,6 +46,7 @@
     left: 0;
     transform-origin: right center;
     animation: next-arrow-bounce 0.91s ease-in-out infinite; /*found time by timing menu */
+    border: 2px solid black;
 }
 
 .prev-arrow {
@@ -88,14 +91,14 @@
 
 .next-sign, .prev-sign{
     position: absolute;
-    top: 50%;
+    top: 18%;
 
-    height: 85%;
+    height: 65%;
     visibility: visible;
     z-index: var(--menu-arrow-sign-z);
 
     transform-origin: center;
-
+    border: 2px solid green;
     
     opacity: 0;
     pointer-events: none;
@@ -103,7 +106,7 @@
 
 .next-sign {
     left: 0;
-    transform: translate(12%, -50%);
+    transform: translateX(var(--next-arrow-home-x));
     /* animation: next-arrow-bounce 0.91s ease-in-out infinite; */
 }
 
@@ -117,7 +120,6 @@
     opacity: 1;
     pointer-events: auto;
     transform-origin: center;
-    
 }
 
 .next-sign.visible {
@@ -164,7 +166,7 @@
 
 @keyframes arrow-hover {
     30% {
-        height: 55%;
+        height: 35%;
     }
 }
 
@@ -184,7 +186,7 @@
 
 @keyframes next-sign-enter {
     0% {
-        top: 6%;
+        top: 17%;
         left: 22%;
         scale: 0.3;
     }
@@ -202,19 +204,21 @@
  after fully enlarging*/
 @keyframes next-sign-enter-wobble {
     0% {
-        transform: translate(12%, -50%);
+        transform: translateX(var(--next-arrow-home-x));
         transform-origin: right center;
     }
 
     50% {
-        transform: translate(12%, -50%) 
+        /* left: 0; */
+        transform: translateX(var(--next-arrow-home-x))
             scale(0.9, 1);
         
         transform-origin: right center;
     }
 
     100% {
-        transform: translate(12%, -50%);
+        /* left: 0; */
+        transform: translateX(var(--next-arrow-home-x));
         transform-origin: right center;
     }
 }
@@ -241,13 +245,13 @@
 @keyframes next-sign-leave {
     0% {
         opacity: 1;
-        transform: translate(12%, -50%);
+        transform: translateX(var(--next-arrow-home-x));
         transform-origin: right center;
     }
 
     99% {
         opacity: 0.3;
-        transform: translate(12%, -50%)
+        transform: translateX(var(--next-arrow-home-x))
             scale(0.3, 0.5);
         transform-origin: right center;
     }
@@ -305,4 +309,13 @@
     40% {
         translate: -0.3vh 0vh;
     }
+}
+
+@keyframes menu-scroll-next {
+    from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(2000px); /* Adjust this value to change the distance */
+  }
 }
