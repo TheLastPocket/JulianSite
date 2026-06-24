@@ -27,9 +27,9 @@ function App() {
       
       <ChannelGrid 
         channelState={channelState}
-        setChannelState={setChannelState} 
+        setChannelState={setChannelState}
         scrollState={scrollState}
-        setScrollState={setScrollState} />
+        setScrollState={setScrollState}/>
     </div>
   );
 }

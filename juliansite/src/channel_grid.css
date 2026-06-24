@@ -10,9 +10,9 @@
     border: 2px solid red;
 }
 
-.channel-grid.next {
-    animation:
-        grid-scroll-left 0.5s ease-in-out forwards;
+.channels-container.next {
+    animation: channel-grid-scroll-next 1s;
+    animation-fill-mode: forwards;
 }
 
 .channel-grid-1, .channel-grid-2, .channel-grid-3, .channel-grid-4{
@@ -44,9 +44,12 @@
     border:2px solid red;
 }
 
-@keyframes grid-scroll-left {
-    100%{
-        transform: translate(-100%, 0%);
+@keyframes channel-grid-scroll-next {
+    from {
+        transform: translateX(0px);
     }
-    
+    to {
+        transform: translateX(-1000px);
+    }
+
 }

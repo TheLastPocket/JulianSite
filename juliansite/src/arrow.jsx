@@ -4,7 +4,7 @@ import channelMetadata from "./channelMetadata.json"
 import menuHoverSound from './assets/sounds/MenuHover.mp3'
 import arrowClickSound from './assets/sounds/arrowClick.mp3'
 
-export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrollState, setScrollStatae, onScroll, style}) {
+export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrollState, setScrollState, style}) {
 
     const signEnterTime = useRef(null);
     const [arrowEntered, setArrowEntered] = useState(false);
@@ -53,8 +53,7 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
             setArrowClicked(true);
             setScrollState({
                 page: scrollState.page +  1,
-                prev_clicked: "false",
-                next_clicked: "true"
+                direction: "next"
             })
             // onScroll();
             setTimeout(() => {

@@ -37,8 +37,6 @@ const scroll_index = 1;
 function useWindowSize() {
     const [size, setSize] = useState([0, 0]);
 
-
-
     useLayoutEffect(() => {
         function updateSize() {
             setSize([window.innerWidth, window.innerHeight]);
@@ -86,14 +84,24 @@ function getGridColumnCount(window_width) {
     return keys[keys.length - 1]["numGridColumns"];
 }
 
-export default function ChannelGrid({ channelState, setChannelState, }) {
+export default function ChannelGrid({ channelState, setChannelState, scrollState, setScrollState}) {
     const [width, height] = useWindowSize();
     const num_grid_channels = getGridSize(width);
     const num_column_channels = getColumnSize(width);
     const num_grid_columns = getGridColumnCount(width);
+    const [nextPressed, setNextPressed] = useState(false);
+    const [scrollAnim, setScrollAnim] = useState("");
+    
+    useEffect(() => {
+        setScrollAnim("");
+        const id = requestAnimationFrame(() => {
+            setScrollAnim(scrollState.direction);
+        });
+        return () => cancelAnimationFrame(id);
+    }, [scrollState.page]);
 
     return (
-        <div id="channels-container" className="channels-container">
+        <div id="channels-container" className={`channels-container ${scrollAnim}`}>
             
             {[...Array(channelMetadata.const.number_of_pages)].map((_, gridIndex) => (
                 <div 
