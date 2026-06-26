@@ -11,7 +11,7 @@
 }
 
 .channels-container.next {
-    animation: channel-grid-scroll-next 1s;
+    animation: channel-grid-scroll-next 0.367s ease-in-out;
     animation-fill-mode: forwards;
 }
 
@@ -46,10 +46,10 @@
 
 @keyframes channel-grid-scroll-next {
     from {
-        transform: translateX(0px);
+        transform: translateX(0vw);
     }
     to {
-        transform: translateX(-1000px);
+        transform: translateX(-80vw);
     }
 
 }

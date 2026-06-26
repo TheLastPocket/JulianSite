@@ -95,14 +95,15 @@ export default function Channel({ id, channelState, setChannelState }) {
             {channelState.state == "menu" &&
                 <div>
                     <img src={channelBackground} className="channel-background" />
-                    <video
+                    
+                    {/* <video
                         className="icon-video"
                         muted={true}
                         autoPlay={true}
-                        loop={true}>
-                        <source src={channelMetadata["channels"][id]["icon"]} type="video/mp4" />
-                        Outdated browser!
-                    </video>
+                        loop={true}> */}
+                        {/* <source src={channelMetadata["channels"][id]["icon"]} type="video/mp4" />
+                        Outdated browser! */}
+                    {/* </video> */}
                     <img src={channelHoverBorder}
                         className={`hover-border ${hoverVisible ? "" : "fade-out"} ${channelState.state == "selected" ? "selected" : ""}`}
                         onMouseEnter={handleChannelHover}

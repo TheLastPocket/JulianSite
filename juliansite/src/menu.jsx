@@ -87,8 +87,8 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
                 scroll_index={scroll_index} 
                 style= {{
                     position: "absolute",
-                    top: "43vh",
-                    left: "0vw"
+                    top: "25vh",
+                    left: "-1vw"
                 }}
                 />
 
@@ -103,7 +103,7 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
                             }}
                             style={{
                                 position: "absolute", 
-                                right: "4.5vw",
+                                right: "3vw",
                                 top: "25vh"
                             }}/>
 

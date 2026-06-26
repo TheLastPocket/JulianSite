@@ -10,8 +10,8 @@
 }
 
 .prev-container {
-    right: 0;
-    transform: translate(50%, -54%);
+    /* right: 0;
+    transform: translate(50%, -54%); */
 }
 
 .next-arrow-hitbox, .prev-arrow-hitbox {
