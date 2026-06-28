@@ -1,8 +1,5 @@
 .next-container, .prev-container{
     z-index: var(--menu-arrow-z);
-    /* width: 22%;
-    height: 30%; */
-    border:2px solid blue;
 }
 
 .next-container {
@@ -10,22 +7,20 @@
 }
 
 .prev-container {
-    /* right: 0;
-    transform: translate(50%, -54%); */
+    /* right: 0;*/
+    /* transform: translate(50%, -54%);  */
 }
 
 .next-arrow-hitbox, .prev-arrow-hitbox {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    
+    top: 25%;
+
     height: 50%;
     width: 40%;
 }
 
 .next-arrow-hitbox{
     left: 57%; /*The hitbox is like this on the actal wii lol*/
-    border: 2px solid palevioletred;
 }
 
 .prev-arrow-hitbox {
@@ -38,15 +33,14 @@
     height: 60%;
     width: 45%;
     
-    top: 50%;
-    transform: translate(0%, -50%);   
+    top: 18%;
+    /* transform: translate(0%, -50%);    */
 }
 
 .next-arrow {
     left: 0;
     transform-origin: right center;
     animation: next-arrow-bounce 0.91s ease-in-out infinite; /*found time by timing menu */
-    border: 2px solid black;
 }
 
 .prev-arrow {
@@ -83,7 +77,6 @@
 
 .next-sign-hitbox, .prev-sign-hitbox{
     position: absolute;
-    /* right: 0; */
 
     height: 100%;
     width: 100%;
@@ -93,12 +86,11 @@
     position: absolute;
     top: 18%;
 
-    height: 65%;
+    height: 60%;
     visibility: visible;
     z-index: var(--menu-arrow-sign-z);
 
     transform-origin: center;
-    border: 2px solid green;
     
     opacity: 0;
     pointer-events: none;
@@ -106,14 +98,13 @@
 
 .next-sign {
     left: 0;
-    transform: translateX(var(--next-arrow-home-x));
-    /* animation: next-arrow-bounce 0.91s ease-in-out infinite; */
+    transform: translateX(var(--next-sign-home-x));
 }
 
 
 .prev-sign{
     right: 0;
-    transform: translate(-16%, -50%);
+    transform: translateX(var(--prev-sign-home-x));
 }
 
 .next-sign.visible, .prev-sign.visible{
@@ -166,20 +157,21 @@
 
 @keyframes arrow-hover {
     30% {
-        height: 35%;
+        transform-origin: center;
+        transform: scaleY(35%);
     }
 }
 
 @keyframes next-arrow-sign-wobble {
     15% {
-        transform: translate(12%, -50%) 
+        transform: translateX(12%) 
             scale(0.72, 1);
     }
 }
 
 @keyframes prev-arrow-sign-wobble {
     15% {
-        transform: translate(-16%, -50%)
+        transform: translateX(-16%)
             scale(0.72, 1);
     }
 }
@@ -204,40 +196,40 @@
  after fully enlarging*/
 @keyframes next-sign-enter-wobble {
     0% {
-        transform: translateX(var(--next-arrow-home-x));
+        transform: translateX(var(--next-sign-home-x));
         transform-origin: right center;
     }
 
     50% {
         /* left: 0; */
-        transform: translateX(var(--next-arrow-home-x))
-            scale(0.9, 1);
+        transform: translateX(var(--next-sign-home-x));
+        transform: scale(0.9, 1);
         
         transform-origin: right center;
     }
 
     100% {
         /* left: 0; */
-        transform: translateX(var(--next-arrow-home-x));
+        transform: translateX(var(--next-sign-home-x));
         transform-origin: right center;
     }
 }
 
 @keyframes prev-sign-enter-wobble {
     0% {
-        transform: translate(-16%, -50%);
+        transform: translateX(var(--prev-sign-home-x));
         transform-origin: left center;
     }
 
     50% {
-        transform: translate(-16%, -50%) 
-            scale(0.9, 1);
+        transform: translateX(var(--prev-sign-home-x)); 
+        transform: scale(0.9, 1);
         
         transform-origin: left center;
     }
 
     100% {
-        transform: translate(-16%, -50%);
+        transform: translate(var(--prev-sign-home-x));
         transform-origin: left center;
     }
 }
@@ -245,14 +237,14 @@
 @keyframes next-sign-leave {
     0% {
         opacity: 1;
-        transform: translateX(var(--next-arrow-home-x));
+        transform: translateX(var(--next-sign-home-x));
         transform-origin: right center;
     }
 
     99% {
         opacity: 0.3;
-        transform: translateX(var(--next-arrow-home-x))
-            scale(0.3, 0.5);
+        transform: translateX(var(--next-sign-home-x));
+        transform: scale(0.3, 0.5);
         transform-origin: right center;
     }
 
@@ -264,14 +256,14 @@
 @keyframes prev-sign-leave {
     0% {
         opacity: 1;
-        transform: translate(-16%, -50%);
+        transform: translateX(var(--prev-sign-home-x));
         transform-origin: left center;
     }
 
     99% {
         opacity: 0.3;
-        transform: translate(-16%, -50%)
-            scale(0.3, 0.5);
+        transform: translateX(var(--prev-sign-home-x));
+        transform: scale(0.3, 0.5);
         transform-origin: left center;
     }
 
@@ -309,13 +301,4 @@
     40% {
         translate: -0.3vh 0vh;
     }
-}
-
-@keyframes menu-scroll-next {
-    from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(2000px); /* Adjust this value to change the distance */
-  }
 }

@@ -30,12 +30,16 @@
   --ib-aspect-ratio: 170/96;
 
 
-  --channel-width: 36vh; /*15.2*/
-  --channel-container-left-offset: 6vw;
-  --channel-container-width: 176vw;
-  --channel-container-height: 65vh;
+  --channel-width: 37.8vh;
+  --channel-container-left-offset: 7.5vw;
+  --channel-container-top-offset: 5vh;
+  --channel-container-width: 360vw;
+  --channel-container-height: 69vh;
 
-  --next-arrow-home-x: -5%
+  --next-sign-home-x: 4%;
+  --prev-sign-home-x: -5%;
+
+  --arrow-bounce-cycle: 0.91s;
   
   /* --next-arrow-home-y: 0 */
   /*This is for icon*/

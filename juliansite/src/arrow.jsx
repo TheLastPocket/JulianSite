@@ -4,6 +4,8 @@ import channelMetadata from "./channelMetadata.json"
 import menuHoverSound from './assets/sounds/MenuHover.mp3'
 import arrowClickSound from './assets/sounds/arrowClick.mp3'
 
+
+let currentX = 0;
 export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrollState, setScrollState, style}) {
 
     const signEnterTime = useRef(null);
@@ -12,6 +14,16 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
     const [arrowClicked, setArrowClicked] = useState(false);
 
     const [entered, setEntered] = useState(false)
+
+    const container = document.querySelector('.channels-container');
+    
+
+    // function handleScroll(direction) {
+    //     console.log(currentX)
+    //     currentX += direction === "next" ? -85 : 85;
+    //     console.log(currentX)
+    //     container.style.transform = `translateX(${currentX}vw)`;
+    // }
 
     const collectiveStyle = {
         ...style,
@@ -46,19 +58,23 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
         setEntered(false);
     };
 
-    const handleSignClick = () => {
+    const handleScroll = (direction) => {
         if(!arrowClicked && entered){
             const arrow_click_sound = new Audio(arrowClickSound);
             arrow_click_sound.play();
+            
             setArrowClicked(true);
+
+            currentX += direction === "next" ? -85 : 85;
+            container.style.transform = `translateX(${currentX}vw)`;
+            
             setScrollState({
-                page: scrollState.page +  1,
-                direction: "next"
+                page: scrollState.page + (direction === "next" ? 1 : -1),
+                direction: direction
             })
-            // onScroll();
+
             setTimeout(() => {
                 setArrowClicked(false);
-                
             }, 400);
         }
     };
@@ -69,7 +85,7 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
             <div className={`${direction}-sign-hitbox`}
                 onMouseEnter={handleSignEnter}
                 onMouseLeave={handleSignLeave}
-                onClick={handleSignClick}>
+                onClick={() => handleScroll(direction)}>
                 <img src={signSrc} 
                     className={`${direction}-sign ${signEntered ? "visible" : "hidden"} 
                         ${arrowClicked ? "click" : ""}`}/>
@@ -77,7 +93,7 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
             <div className={`${direction}-arrow-hitbox`}
                 onMouseEnter={handleArrowEnter}
                 onMouseLeave={handleArrowLeave}
-                onClick={handleSignClick}>
+                onClick={() => handleScroll(direction)}>
                     <img src={arrowSrc}
                     className={`${direction}-arrow ${(arrowEntered) ? "enter" : ""} 
                         ${!signEntered ? "leave" : ""}`}/>

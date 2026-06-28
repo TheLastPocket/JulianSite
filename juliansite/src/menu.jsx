@@ -27,6 +27,7 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
     const [showColon, setShowColon] = useState(true);
     const [tooltipVisible, setTooltipVisible] = useState(false);
     const [next, setNext] = useState(false);
+    const [prev, setPrev] = useState(false);
 
     const scroll_index = 1;
 
@@ -46,6 +47,14 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
         
         setTimeout(() => {
             setNext(false);   
+        }, 400);
+    }
+
+    const handlePrev = () => {
+        setPrev(true);
+        
+        setTimeout(() => {
+            setPrev(false);   
         }, 400);
     }
 
@@ -81,31 +90,37 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
                 <img src={homeMenuBackground} alt="Background" className="background" />
 
                 <Arrow 
-                direction={"prev"}
-                arrowSrc={prevArrow}
-                signSrc={prevSign}
-                scroll_index={scroll_index} 
-                style= {{
-                    position: "absolute",
-                    top: "25vh",
-                    left: "-1vw"
-                }}
+                    direction={"prev"}
+                    arrowSrc={prevArrow}
+                    signSrc={prevSign}
+                    scroll_index={scroll_index}
+                    scrollState={scrollState}
+                    setScrollState={setScrollState}
+                    onClick={() => {
+                        handlePrev();
+                    }}
+                    style= {{
+                        position: "absolute",
+                        top: "24vh",
+                        left: "0vw"
+                    }}
                 />
 
-                <Arrow direction={"next"}
-                            arrowSrc={nextArrow}
-                            signSrc={nextSign}
-                            scroll_index={scroll_index}
-                            scrollState={scrollState}
-                            setScrollState={setScrollState} 
-                            onClick={() => {
-                                handleNext();
-                            }}
-                            style={{
-                                position: "absolute", 
-                                right: "3vw",
-                                top: "25vh"
-                            }}/>
+                <Arrow 
+                    direction={"next"}
+                    arrowSrc={nextArrow}
+                    signSrc={nextSign}
+                    scroll_index={scroll_index}
+                    scrollState={scrollState}
+                    setScrollState={setScrollState} 
+                    onClick={() => {
+                        handleNext();
+                    }}
+                    style={{
+                        position: "absolute", 
+                        right: "-1vw",
+                        top: "24vh"
+                    }}/>
 
                 <div className="bottom">
                     <div className="bottom-bar">
