@@ -82,7 +82,6 @@
     position: relative;
     width: var(--channel-width);
     aspect-ratio: 170/96;
-    will-change:transform;
 }
 
 
