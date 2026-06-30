@@ -102,13 +102,13 @@ export default function ChannelGrid({ channelState, setChannelState, scrollState
 
     return (
         <div id="channels-container" className={`channels-container ${scrollAnim}`}>
-            
-            {[...Array(channelMetadata.const.number_of_pages)].map((_, gridIndex) => (
+            {[...Array(channelMetadata.const.number_of_pages)].map((_, gridIndex) => {
+            return (
                 <div 
                     className = {`channel-grid-${gridIndex + 1}`}
                     key = {gridIndex} 
                     style={{
-                        display: Math.abs(gridIndex - scroll_index) < 2 ? "visible" : "none",
+                        //display: Math.abs(gridIndex - scroll_index) < 2 ? "visible" : "none",
                         gridTemplateColumns: `repeat(${num_grid_columns}, 1fr)`
                         }
                  }>
@@ -123,9 +123,8 @@ export default function ChannelGrid({ channelState, setChannelState, scrollState
                                 setChannelState={setChannelState} />
                         ))}
                 </div>
-            ))}
-
-            
+            );
+        })} 
         </div >
     )
 }
