@@ -16,14 +16,6 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
     const [entered, setEntered] = useState(false)
 
     const container = document.querySelector('.channels-container');
-    
-
-    // function handleScroll(direction) {
-    //     console.log(currentX)
-    //     currentX += direction === "next" ? -85 : 85;
-    //     console.log(currentX)
-    //     container.style.transform = `translateX(${currentX}vw)`;
-    // }
 
     const collectiveStyle = {
         ...style,
