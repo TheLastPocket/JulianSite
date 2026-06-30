@@ -2,15 +2,15 @@ import { useState, useEffect, useRef } from 'react'
 import "./channel.css"
 import channelMetadata from "./channelMetadata.json"
 
-import channelBackground from './assets/channel/ChannelMaskIcon.png'
-import menuChannelClick from './assets/sounds/ChannelClick.mp3'
+import channelBackground from './assets/channel/channelMaskIcon.png'
+import menuChannelClick from './assets/sounds/channelClick.mp3'
 
 
-import channelHoverBorder from './assets/channel/ChannelHoverBorder.png'
-import menuHoverSound from './assets/sounds/MenuHover.mp3'
+import channelHoverBorder from './assets/channel/channelHoverBorder.png'
+import menuHoverSound from './assets/sounds/menuHover.mp3'
 import tooltipSound from './assets/sounds/tooltipSound.mp3'
 import channelMenu from './assets/channel/channelMenu.png'
-import channelSelectBackground from './assets/channel/ChannelSelectBackground.png'
+import channelSelectBackground from './assets/channel/channelSelectBackground.png'
 
 import channelStartButton from './assets/channel/channelStartButton.png'
 import channelMenuButton from './assets/channel/channelMenuButton.png'

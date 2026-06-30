@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect, useEffect, useRef } from 'react'
 import './arrow.css'                                  
 import channelMetadata from "./channelMetadata.json"
-import menuHoverSound from './assets/sounds/MenuHover.mp3'
+import menuHoverSound from './assets/sounds/menuHover.mp3'
 import arrowClickSound from './assets/sounds/arrowClick.mp3'
 
 

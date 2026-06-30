@@ -6,19 +6,19 @@ import homeMenuBottomLeft from './assets/menu/homeMenuBottomLeft.png'
 import homeMenuBottomMiddle from './assets/menu/homeMenuBottomMiddle.png'
 import homeMenuBottomRight from './assets/menu/homeMenuBottomRight.png'
 
-import homeMenuBackground from './assets/menu/HomeMenuBackground.jpg'
-import MailButton from './assets/menu/MailButton.png'
+import homeMenuBackground from './assets/menu/homeMenuBackground.jpg'
+import MailButton from './assets/menu/mailButton.png'
 import './menu.css'
 import Arrow from './arrow.jsx'
 
-import menuHoverSound from './assets/sounds/MenuHover.mp3'
+import menuHoverSound from './assets/sounds/menuHover.mp3'
 import tooltipSound from './assets/sounds/tooltipSound.mp3'
 
-import channelSelectBackground from './assets/channel/ChannelSelectBackground.png'
-import nextArrow from './assets/menu/NextArrow.png'
-import prevArrow from './assets/menu/PrevArrow.png'
-import nextSign from './assets/menu/NextSign.png'
-import prevSign from './assets/menu/PrevSign.png'
+import channelSelectBackground from './assets/channel/channelSelectBackground.png'
+import nextArrow from './assets/menu/nextArrow.png'
+import prevArrow from './assets/menu/prevArrow.png'
+import nextSign from './assets/menu/nextSign.png'
+import prevSign from './assets/menu/prevSign.png'
 
 export default function Menu({ channelState , scrollState, setScrollState}) {
     const tooltipTime = useRef(null);
