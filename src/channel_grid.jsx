@@ -101,7 +101,7 @@ export default function ChannelGrid({ channelState, setChannelState, scrollState
     }, [scrollState.page]);
 
     // useEffect(() => {
-    //     const channels = document.querySelectorAll()
+    //     const channels = document.querySelectorAll(channel-container)
     // });
 
     return (
