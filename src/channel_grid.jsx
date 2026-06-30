@@ -100,6 +100,10 @@ export default function ChannelGrid({ channelState, setChannelState, scrollState
         return () => cancelAnimationFrame(id);
     }, [scrollState.page]);
 
+    // useEffect(() => {
+    //     const channels = document.querySelectorAll()
+    // });
+
     return (
         <div id="channels-container" className={`channels-container ${scrollAnim}`}>
             {[...Array(channelMetadata.const.number_of_pages)].map((_, gridIndex) => {
