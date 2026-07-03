@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useEffect, useRef } from 'react'
+import { useState, useLayoutEffect, useRef } from 'react'
 import Channel from './channel.jsx'
 import './channel_grid.css'
 import channelMetadata from "./channelMetadata.json"
@@ -90,22 +90,9 @@ export default function ChannelGrid({ channelState, setChannelState, scrollState
     const num_column_channels = getColumnSize(width);
     const num_grid_columns = getGridColumnCount(width);
     const [nextPressed, setNextPressed] = useState(false);
-    const [scrollAnim, setScrollAnim] = useState("");
-    
-    useEffect(() => {
-        setScrollAnim("");
-        const id = requestAnimationFrame(() => {
-            setScrollAnim(scrollState.direction);
-        });
-        return () => cancelAnimationFrame(id);
-    }, [scrollState.page]);
-
-    // useEffect(() => {
-    //     const channels = document.querySelectorAll(channel-container)
-    // });
 
     return (
-        <div id="channels-container" className={`channels-container ${scrollAnim}`}>
+        <div id="channels-container" className="channels-container">
             {[...Array(channelMetadata.const.number_of_pages)].map((_, gridIndex) => {
             return (
                 <div 

@@ -8,7 +8,7 @@
     "channels": [
         {
             "name": "Disc Channel",
-            "icon": "./assets/videos/null_i.mp4",
+            "icon": "/JulianSite/null_i.mp4",
             "does_banner_loop": false,
             "banner_intro": null,
             "banner_loop": null,
@@ -21,7 +21,7 @@
         },
         {
             "name": "Julian Maynes",
-            "icon": "./assets/videos/null_i.mp4",
+            "icon": "/JulianSite/null_i.mp4",
             "does_banner_loop": false,
             "banner_intro": null,
             "banner_loop": null,
@@ -34,7 +34,7 @@
         },
         {
             "name": "Homebrew Channel",
-            "icon": "./assets/videos/hbc_i.mp4",
+            "icon": "/JulianSite/hbc_i.mp4",
             "does_banner_loop": true,
             "banner_intro": "./src/assets/videos/hbc_b.mp4",
             "banner_loop": null,
@@ -59,6 +59,6 @@
         }
     ],
     "const": {
-        "number_of_pages": 2
+        "number_of_pages": 4
     }
 }
