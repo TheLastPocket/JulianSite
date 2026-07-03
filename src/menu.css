@@ -64,11 +64,15 @@
     top: 0;
     left: 0;
     width: 100vw;
+    height: 100vh;
     /* border: 2px solid red; */
     /*TODO: Make this based on what channel is selected. Currently zooms into a certain spot in the middle*/
     /* transform-origin: 50vw 50vh;
     transform: scale(1);
     transition: transform 0.21s ease-in-out, transform-origin 0.21s ease-in-out; */
+    /* background-image: url('./assets/background.svg');
+    background-repeat: repeat; */
+    /* background-size:10px 2px; */
 }
 
 .combined-home-screen.selected {
@@ -89,6 +93,7 @@
     margin: 0;
     padding: 0;
     z-index: var(--background-z);
+    background-repeat: repeat; 
 }
 
 .bottom {

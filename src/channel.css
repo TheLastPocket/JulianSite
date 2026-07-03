@@ -101,7 +101,7 @@
     height: 100%;
     left: 0%;
     aspect-ratio: var(--ib-aspect-ratio);
-    mask: url("./assets/channel/ChannelMaskIcon.png");
+    mask: url("./assets/channel/channelMaskIcon.png");
     mask-size: 96% 95.6%;
     mask-position: 35% 42%;
     mask-repeat: no-repeat;
@@ -160,7 +160,7 @@
     display: flex;
     flex-direction: column;
 
-    mask: url("./assets/channel/ChannelMaskBanner.png");
+    mask: url("./assets/channel/channelMaskBanner.png");
     mask-size: 100% 98%;
     mask-position: 0% 0%;
     mask-repeat: no-repeat;
@@ -225,8 +225,8 @@
     z-index: var(--channel-video-unselected-z);
     width: 101%;
     height: 75%;
-    mask: url("./assets/channel/ChannelMask.png");
-    -webkit-mask: url("./assets/channel/ChannelMask.png");
+    mask: url("./assets/channel/channelMask.png");
+    -webkit-mask: url("./assets/channel/channelMask.png");
     mask-size: 98.5%;
     -webkit-mask-size: 98.5%;
     mask-position: 0px 33px;
