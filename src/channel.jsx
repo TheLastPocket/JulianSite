@@ -65,13 +65,19 @@ export default function Channel({ id, channelState, setChannelState }) {
         }
     }
 
+    document.addEventListener('mousemove', function(event) {
+        const x = event.clientX;
+        const y = event.clientY;
+        console.log(`Mouse position: X=${x}, Y=${y}`);
+    });
+
     //Clicking on channel
     const handleChannelClick = () => {
         const rect = channel.current.getBoundingClientRect();
+
+        /* zoom origin in vw and vh */
         const originX = ((rect.left + rect.right) / 2 / window.innerWidth) * 100;
-        const originY = ((rect.top + rect.bottom) / 2 / window.innerHeight) * 100 - 12;
-        console.log(originX)
-        console.log(originY)
+        const originY = ((rect.top + rect.bottom) / 2 / window.innerHeight) * 100;
 
         //play audio
         if (channelMetadata.channels[id].name != null) {
@@ -94,7 +100,6 @@ export default function Channel({ id, channelState, setChannelState }) {
 
     return (
         <div ref={channel} className={`channel-container ${channelState.state == "menu" || channelState.channel !== id ? "menu" : "selected"}`}>
-
             {(channelState.state == "menu" || channelState.channel !== id) &&
                 <div>
                     <img src={channelBackground} className="channel-background" />
@@ -118,7 +123,7 @@ export default function Channel({ id, channelState, setChannelState }) {
                 <div className="banner-container">
                     <video className="banner"
                         autoPlay={true}
-                        src={channelMetadata["channels"][id]["banner"]}>
+                        src={channelMetadata["channels"][id]["banner_intro"]}>
                         "Outdated browser!"
                     </video>
                     <div className="banner-div">

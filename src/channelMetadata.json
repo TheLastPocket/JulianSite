@@ -36,7 +36,7 @@
             "name": "Homebrew Channel",
             "icon": "/JulianSite/hbc_i.mp4",
             "does_banner_loop": true,
-            "banner_intro": "./src/assets/videos/hbc_b.mp4",
+            "banner_intro": "/JulianSite/hbc_b.mp4",
             "banner_loop": null,
             "volume": 1,
             "does_music_loop": true,

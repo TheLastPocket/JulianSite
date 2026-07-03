@@ -186,7 +186,7 @@
 .banner-menu-start {
     position: absolute;
     width: 30%;
-    top: 13.5%;
+    top: var(--banner-button-height);
     right: 18%;
     transition: transform 0.125s ease;
 }
@@ -198,7 +198,7 @@
 .banner-menu-menu {
     position: absolute;
     width: 30%;
-    top: 13.5%;
+    top: var(--banner-button-height);
     left: 18%;
     transition: transform 0.125s ease;
 }

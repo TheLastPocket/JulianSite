@@ -1,7 +1,6 @@
 #root {
   max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
   user-select: none;
   overflow: hidden;
@@ -31,6 +30,7 @@
 
   --ib-aspect-ratio: 170/96;
 
+  --banner-button-height: 13vh;
 
   --channel-width: 37.8vh;
   --channel-container-left-offset: 7.5vw;
@@ -112,6 +112,10 @@
 }
 
 .home-screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh; 
+  overflow: hidden;
   cursor: url("./assets/cursor/cursor_smaller.png") 39 0, auto;
 }
 
@@ -121,10 +125,18 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  transform-origin: var(--zoom-origin-x) var(--zoom-origin-y);
+  transform-origin: 0 0;
   transition: transform 0.5s ease-in-out;
 }
 
 .zoom-wrapper.selected {
-  transform: scale(var(--channel-zoom-scale));
+  transform:
+    /* scaling cleanly multiplies the zoom point vw (and vh) by the scaling factor,
+    leaving it not cleanly at 50vw,50vh (center of the screen). translate nudges it
+    back to the center */
+    translate(
+      calc(50vw - var(--zoom-origin-x) * var(--channel-zoom-scale)),
+      calc(50vh - var(--zoom-origin-y) * var(--channel-zoom-scale))
+    )
+    scale(var(--channel-zoom-scale));
 }
