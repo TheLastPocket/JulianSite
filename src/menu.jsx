@@ -84,7 +84,7 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
     return (
         <div>
             {/* Black background when you select a channel */}
-            {/* <img src={channelSelectBackground} className={`channel-select-background ${channelState.state === "selected" ? "selected" : "unselected"}`} /> */}
+            <img src={channelSelectBackground} className={`channel-select-background ${channelState.state === "selected" ? "selected" : "unselected"}`} />
 
             <div className={`combined-home-screen ${channelState.state}`}>
                 <img src={homeMenuBackground} alt="Background" className="background" />

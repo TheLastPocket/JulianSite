@@ -68,7 +68,10 @@ export default function Channel({ id, channelState, setChannelState }) {
     //Clicking on channel
     const handleChannelClick = () => {
         const rect = channel.current.getBoundingClientRect();
-        console.log("location:", (rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
+        const originX = ((rect.left + rect.right) / 2 / window.innerWidth) * 100;
+        const originY = ((rect.top + rect.bottom) / 2 / window.innerHeight) * 100 - 12;
+        console.log(originX)
+        console.log(originY)
 
         //play audio
         if (channelMetadata.channels[id].name != null) {
@@ -81,7 +84,7 @@ export default function Channel({ id, channelState, setChannelState }) {
                 setChannelState({
                     state: "selected",
                     channel: id,
-
+                    zoomOrigin: { x: originX, y: originY },
                 });
 
             }, 200);
@@ -90,9 +93,9 @@ export default function Channel({ id, channelState, setChannelState }) {
 
 
     return (
-        <div ref={channel} className={`channel-container ${channelState.state == "menu" ? "menu" : "selected"}`}>
+        <div ref={channel} className={`channel-container ${channelState.state == "menu" || channelState.channel !== id ? "menu" : "selected"}`}>
 
-            {channelState.state == "menu" &&
+            {(channelState.state == "menu" || channelState.channel !== id) &&
                 <div>
                     <img src={channelBackground} className="channel-background" />
                     
@@ -111,7 +114,7 @@ export default function Channel({ id, channelState, setChannelState }) {
                         onClick={handleChannelClick} />
                 </div>
             }
-            {channelState.state == "selected" &&
+            {channelState.state == "selected" && channelState.channel === id &&
                 <div className="banner-container">
                     <video className="banner"
                         autoPlay={true}
@@ -126,9 +129,6 @@ export default function Channel({ id, channelState, setChannelState }) {
                         <img src={channelMenuButton}
                             className="banner-menu-menu" />
                     </div>
-                    {/* <div className="banner-menu">
-                    </div> */}
-
                 </div>
 
             }

@@ -39,9 +39,11 @@
   --channel-container-height: 69vh;
 
   --next-sign-home-x: 4%;
-  --prev-sign-home-x: -5%;
+  --prev-sign-home-x: -7%;
 
   --arrow-bounce-cycle: 0.91s;
+
+  --channel-zoom-scale: 4;
   
   /* --next-arrow-home-y: 0 */
   /*This is for icon*/
@@ -111,4 +113,18 @@
 
 .home-screen {
   cursor: url("./assets/cursor/cursor_smaller.png") 39 0, auto;
+}
+
+.zoom-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transform-origin: var(--zoom-origin-x) var(--zoom-origin-y);
+  transition: transform 0.5s ease-in-out;
+}
+
+.zoom-wrapper.selected {
+  transform: scale(var(--channel-zoom-scale));
 }

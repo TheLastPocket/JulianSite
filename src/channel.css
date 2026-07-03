@@ -151,12 +151,14 @@
 }
 
 .channel-container.selected {
+    position: relative;
     aspect-ratio: 832/456;
-    /* width: 47vh; */
-    width: 70vh;
+    width: var(--channel-width);
 }
 
 .banner-container {
+    position: relative;
+    z-index: var(--channel-video-selected-z);
     display: flex;
     flex-direction: column;
 

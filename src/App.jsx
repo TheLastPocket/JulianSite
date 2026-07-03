@@ -7,7 +7,8 @@ import ChannelGrid from './channel_grid.jsx'
 function App() {
   const [channelState, setChannelState] = useState({
     state: "menu",
-    channel: null
+    channel: null,
+    zoomOrigin: { x: 50, y: 50 }
   });
 
   const [scrollState, setScrollState] = useState({
@@ -18,18 +19,25 @@ function App() {
 
   return (
     <div className='home-screen'>
-      <Menu 
-        channelState={channelState}
-        scrollState={scrollState}
-        setScrollState={setScrollState} />
+      <div
+        className={`zoom-wrapper ${channelState.state === "selected" ? "selected" : "menu"}`}
+        style={{
+          '--zoom-origin-x': `${channelState.zoomOrigin.x}vw`,
+          '--zoom-origin-y': `${channelState.zoomOrigin.y}vh`
+        }}>
+        <Menu
+          channelState={channelState}
+          scrollState={scrollState}
+          setScrollState={setScrollState} />
+
+        <ChannelGrid
+          channelState={channelState}
+          setChannelState={setChannelState}
+          scrollState={scrollState}
+          setScrollState={setScrollState}/>
+      </div>
 
       <PlayMusic channelState={channelState} />
-      
-      <ChannelGrid 
-        channelState={channelState}
-        setChannelState={setChannelState}
-        scrollState={scrollState}
-        setScrollState={setScrollState}/>
     </div>
   );
 }

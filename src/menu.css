@@ -76,13 +76,12 @@
 }
 
 .combined-home-screen.selected {
-    /*Container for when a channel is selected. Needs to be heavily altered*/
+    /*Container for when a channel is selected*/
     position: absolute;
     top: 0;
     left: 0;
-    transform-origin: 50vw 50vh;
-    transform: scale(2.5);
-    transition: transform 0.5s ease-in-out, transform-origin 0.5s ease-in-out;
+    width: 100vw;
+    height: 100vh;
 }
 
 
@@ -235,6 +234,7 @@
     height: 100vh;
     object-fit: cover;
     opacity: 0;
+    transition: opacity 0.3s ease-in-out;
     z-index: var(--channel-select-background-unselected-z);
 }
 
