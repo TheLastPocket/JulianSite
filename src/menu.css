@@ -105,6 +105,7 @@
     display: flex;
     height: var(--bottom-bar-height);
     width: 100vw;
+    min-width: 0;
 }
 
 .bottom-bar-left {
@@ -133,6 +134,7 @@
     flex-shrink: 0;
     margin-left: -1px;
     /*Counteracts weird 1px flexbox gap*/
+
 }
 
 .bottom-bar-right {
