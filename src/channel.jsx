@@ -127,7 +127,8 @@ export default function Channel({ id, channelState, setChannelState }) {
                         className="icon-video"
                         muted={true}
                         autoPlay={true}
-                        loop={true}>
+                        loop={true}
+                        playsInline={true}>
                             <source src={channelMetadata["channels"][id]["icon"]} type="video/mp4" />
                             Outdated browser!
                     </video>
@@ -142,7 +143,9 @@ export default function Channel({ id, channelState, setChannelState }) {
                 <div className="banner-container">
                     <video className="banner"
                         ref={bannerVideo}
+                        muted={true}
                         autoPlay={true}
+                        playsInline={true}
                         loop={channelMetadata["channels"][id]["does_banner_loop"]}
                         src={channelMetadata["channels"][id]["banner"]}>
                         "Outdated browser!"
