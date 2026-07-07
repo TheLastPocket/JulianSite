@@ -32,8 +32,9 @@
     position: absolute;
     height: 60%;
     width: 45%;
-    
+
     top: 18%;
+    will-change: transform;
     /* transform: translate(0%, -50%);    */
 }
 
@@ -91,7 +92,8 @@
     z-index: var(--menu-arrow-sign-z);
 
     transform-origin: center;
-    
+    will-change: transform;
+
     opacity: 0;
     pointer-events: none;
 }
