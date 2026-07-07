@@ -111,6 +111,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   cursor: url("./assets/cursor/cursor_smaller.png") 39 0, auto;
 }
@@ -121,6 +122,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   transform-origin: 0 0;
   transition: transform 0.5s ease-in-out;
 }
