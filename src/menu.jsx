@@ -86,16 +86,14 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
             {/* Black background when you select a channel */}
             <img src={channelSelectBackground} className={`channel-select-background ${channelState.state === "selected" ? "selected" : "unselected"}`} />
 
-            <div className={`combined-home-screen ${channelState.state}`}>
-                <img src={homeMenuBackground} alt="Background" className="background" />
-
-                <Arrow 
+            <Arrow 
                     direction={"prev"}
                     arrowSrc={prevArrow}
                     signSrc={prevSign}
                     scroll_index={scroll_index}
                     scrollState={scrollState}
                     setScrollState={setScrollState}
+                    channelState={channelState}
                     onClick={() => {
                         handlePrev();
                     }}
@@ -113,6 +111,7 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
                     scroll_index={scroll_index}
                     scrollState={scrollState}
                     setScrollState={setScrollState} 
+                    channelState={channelState}
                     onClick={() => {
                         handleNext();
                     }}
@@ -121,6 +120,10 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
                         right: "-1vw",
                         top: "24vh"
                     }}/>
+
+
+            <div className={`combined-home-screen ${channelState.state}`}>
+                <img src={homeMenuBackground} alt="Background" className="background" />
 
                 <div className="bottom">
                     <div className="bottom-bar">

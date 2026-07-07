@@ -7,6 +7,7 @@
 }
 
 :root {
+  /* menu */
   --background-z: 0;
   --menu-bottom-z: 1;
   --menu-button-image-z: 2;
@@ -16,35 +17,30 @@
   --menu-button-tooltip-text-z: 6;
   --channel-select-background-unselected-z: 0;
   --channel-select-background-selected-z: 7;
-  --menu-arrow-z: 8;
-  --menu-arrow-sign-z: 9;
-
   --bottom-bar-height: 27vh;
-
   --mail-button-bottom: 4.5vh;
   --mail-button-right: 5.8vh;
-
   --time-digit-height: 9vh;
-
   --date-font-size: 5vh;
-
+  
+  /* channel */
   --ib-aspect-ratio: 170/96;
-
-  --banner-button-height: 13vh;
-
   --channel-width: 37.8vh;
   --channel-container-left-offset: 7.5vw;
   --channel-container-top-offset: 5vh;
   --channel-container-width: 360vw;
   --channel-container-height: 69vh;
-
-  --next-sign-home-x: 4%;
-  --prev-sign-home-x: -7%;
-
-  --arrow-bounce-cycle: 0.91s;
-
   --channel-zoom-scale: 4;
   
+  --banner-button-height: 12.4%;
+
+  /* arrow */
+  --menu-arrow-z: 8;
+  --menu-arrow-sign-z: 9;
+  --next-sign-home-x: 4%;
+  --prev-sign-home-x: -7%;
+  --arrow-bounce-cycle: 0.91s;
+
   /* --next-arrow-home-y: 0 */
   /*This is for icon*/
   /* --ib-aspect-ratio: 832/456; THIS IS FOR THE BANNER*/

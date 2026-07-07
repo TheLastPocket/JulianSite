@@ -19,6 +19,7 @@ import channelMenuButton from './assets/channel/channelMenuButton.png'
 
 export default function Channel({ id, channelState, setChannelState }) {
     const channel = useRef(null);
+    const bannerVideo = useRef(null);
     // const [tooltipVisible, setTooltipVisible] = useState(false);
     const [hoverVisible, setHoverVisible] = useState(false);
     // const [channelSelected, setChannelSelected] = useState(false);
@@ -34,6 +35,24 @@ export default function Channel({ id, channelState, setChannelState }) {
     //         channelVideoRef.current.load();
     //     }
     // }, [channelState]);
+
+    //Loop the banner video between banner_loop_start and banner_loop_end
+    useEffect(() => {
+        if (channelState.state !== "selected" || channelState.channel !== id || !bannerVideo.current) {
+            return;
+        }
+
+        const { banner_loop_start, banner_loop_end } = channelMetadata.channels[id];
+        const video = bannerVideo.current;
+
+        if (banner_loop_start != null && banner_loop_end != null) {
+            video.ontimeupdate = () => {
+                if (video.currentTime >= banner_loop_end) {
+                    video.currentTime = banner_loop_start;
+                }
+            };
+        }
+    }, [channelState.state, channelState.channel, id]);
 
     const handleChannelHover = () => {
         if (channelState.state === "menu" && channelMetadata.channels[id].name != null) {
@@ -122,8 +141,10 @@ export default function Channel({ id, channelState, setChannelState }) {
             {channelState.state == "selected" && channelState.channel === id &&
                 <div className="banner-container">
                     <video className="banner"
+                        ref={bannerVideo}
                         autoPlay={true}
-                        src={channelMetadata["channels"][id]["banner_intro"]}>
+                        loop={channelMetadata["channels"][id]["does_banner_loop"]}
+                        src={channelMetadata["channels"][id]["banner"]}>
                         "Outdated browser!"
                     </video>
                     <div className="banner-div">

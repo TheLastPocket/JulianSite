@@ -12,7 +12,7 @@ function App() {
   });
 
   const [scrollState, setScrollState] = useState({
-    page: "0",
+    page: 0,
     prev_clicked: false,
     next_clicked: false
   })

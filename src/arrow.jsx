@@ -6,7 +6,7 @@ import arrowClickSound from './assets/sounds/arrowClick.mp3'
 
 
 let currentX = 0;
-export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrollState, setScrollState, style}) {
+export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrollState, setScrollState, channelState, style}) {
 
     const signEnterTime = useRef(null);
     const [arrowEntered, setArrowEntered] = useState(false);
@@ -71,23 +71,30 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
         }
     };
 
+    const atEdge = (direction === "prev" && scrollState.page == 0) ||
+        (direction === "next" && scrollState.page == channelMetadata.const.number_of_pages - 1);
+
     return (
-        <div className={`${direction}-container`}
+        <div className={`${direction}-container
+                ${channelState.state === "selected" ? "channel-select" : ""}
+                ${atEdge ? `${direction}-edge` : ""}`}
             style={collectiveStyle}>
             <div className={`${direction}-sign-hitbox`}
                 onMouseEnter={handleSignEnter}
                 onMouseLeave={handleSignLeave}
                 onClick={() => handleScroll(direction)}>
-                <img src={signSrc} 
-                    className={`${direction}-sign ${signEntered ? "visible" : "hidden"} 
-                        ${arrowClicked ? "click" : ""}`}/>
+                <img src={signSrc}
+                    className={`${direction}-sign ${signEntered ? "visible" : "hidden"}
+                        ${arrowClicked ? "click" : ""}
+                        ${atEdge ? "edge-shrink" : ""}`
+                    }/>
             </div>
             <div className={`${direction}-arrow-hitbox`}
                 onMouseEnter={handleArrowEnter}
                 onMouseLeave={handleArrowLeave}
                 onClick={() => handleScroll(direction)}>
                     <img src={arrowSrc}
-                    className={`${direction}-arrow ${(arrowEntered) ? "enter" : ""} 
+                    className={`${direction}-arrow ${(arrowEntered) ? "enter" : ""}
                         ${!signEntered ? "leave" : ""}`}/>
             </div>
         </div>
