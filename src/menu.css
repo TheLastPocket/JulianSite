@@ -105,7 +105,6 @@
     display: flex;
     height: var(--bottom-bar-height);
     width: 100vw;
-    min-width: 0;
 }
 
 .bottom-bar-left {
