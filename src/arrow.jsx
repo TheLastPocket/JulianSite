@@ -71,14 +71,37 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
         }
     };
 
+    const handleContainerAnimationEnd = (e) => {
+        // only triggers on animation end, fnishing edgeReturning process
+        if (e.animationName === "edge-slide-thin-reverse") {
+            setEdgeReturning(false);
+        }
+    };
+
     const atEdge = (direction === "prev" && scrollState.page == 0) ||
         (direction === "next" && scrollState.page == channelMetadata.const.number_of_pages - 1);
+
+    const wasAtEdge = useRef(atEdge);
+    const [edgeReturning, setEdgeReturning] = useState(false);
+
+    useEffect(() => {
+        //Only slide back in when we just left the edge (was hidden, now shown again)
+        if (wasAtEdge.current && !atEdge) {
+            //currently scrolling back
+            setEdgeReturning(true);
+        }
+        wasAtEdge.current = atEdge;
+    }, [atEdge]);
+
+    
 
     return (
         <div className={`${direction}-container
                 ${channelState.state === "selected" ? "channel-select" : ""}
-                ${atEdge ? `${direction}-edge` : ""}`}
-            style={collectiveStyle}>
+                ${atEdge ? `${direction}-edge` : ""}
+                ${edgeReturning ? `${direction}-edge-return` : ""}`}
+            style={collectiveStyle}
+            onAnimationEnd={handleContainerAnimationEnd}>
             <div className={`${direction}-sign-hitbox`}
                 onMouseEnter={handleSignEnter}
                 onMouseLeave={handleSignLeave}

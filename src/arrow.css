@@ -173,6 +173,17 @@
     animation: edge-slide-thin 0.133s ease-in-out forwards 0.3s;
 }
 
+.next-container.next-edge-return {
+    transform-origin: right center;
+    animation: edge-slide-thin-reverse 0.133s ease-in-out 0.3s both; /*forwards keeps it in 
+    place after animation, backwards keeps it in place before sliding back*/
+}
+
+.prev-container.prev-edge-return {
+    transform-origin: left center;
+    animation: edge-slide-thin-reverse 0.133s ease-in-out 0.3s both;
+}
+
 .next-sign.edge-shrink,
 .next-sign.visible.edge-shrink,
 .next-sign.visible.click.edge-shrink {
@@ -187,7 +198,6 @@
     animation: 
         sign-edge-shrink 0.133s ease-in-out forwards 0.3s;
 }
-
 
 @keyframes arrow-hover {
     30% {
@@ -353,6 +363,16 @@
     }
 }
 
+@keyframes edge-slide-thin-reverse {
+    0% {
+        transform: scaleX(0);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+
 @keyframes sign-edge-shrink {
     0% {
         transform: scale(1);
@@ -362,4 +382,3 @@
         transform: scale(0);
     }
 }
-
