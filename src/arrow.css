@@ -160,42 +160,54 @@
 
 .next-container.channel-select{
     animation:
+        next-arrow-bounce 0.91s ease-in-out infinite,
         next-arrow-channel-select-slide 3s ease-in-out forwards
 }
 
 .next-container.next-edge {
     transform-origin: right center;
-    animation: edge-slide-thin 0.133s ease-in-out forwards 0.3s;
+    animation:
+        next-arrow-bounce 0.91s ease-in-out infinite, 
+        edge-slide-thin 0.133s ease-in-out forwards 0.3s;
 }
 
 .prev-container.prev-edge {
     transform-origin: left center;
-    animation: edge-slide-thin 0.133s ease-in-out forwards 0.3s;
+    animation:
+        prev-arrow-bounce 0.91s ease-in-out infinite, 
+        edge-slide-thin 0.133s ease-in-out forwards 0.3s;
 }
 
 .next-container.next-edge-return {
     transform-origin: right center;
-    animation: edge-slide-thin-reverse 0.133s ease-in-out 0.3s both; /*forwards keeps it in 
+    animation:
+        next-arrow-bounce 0.91s ease-in-out infinite, 
+        edge-slide-thin-reverse 0.133s ease-in-out 0.3s both; /*forwards keeps it in 
     place after animation, backwards keeps it in place before sliding back*/
 }
 
 .prev-container.prev-edge-return {
     transform-origin: left center;
-    animation: edge-slide-thin-reverse 0.133s ease-in-out 0.3s both;
+    animation:
+        prev-arrow-bounce 0.91s ease-in-out infinite, 
+        edge-slide-thin-reverse 0.133s ease-in-out 0.3s both;
 }
 
 .next-sign.edge-shrink,
 .next-sign.visible.edge-shrink,
 .next-sign.visible.click.edge-shrink {
     transform-origin: right center;
-    animation: sign-edge-shrink 0.133s ease-in-out forwards 0.3s;
+    animation:
+        next-arrow-bounce 0.91s ease-in-out infinite, 
+        sign-edge-shrink 0.133s ease-in-out forwards 0.3s;
 }
 
 .prev-sign.edge-shrink,
 .prev-sign.visible.edge-shrink,
 .prev-sign.visible.click.edge-shrink {
     transform-origin: left center;
-    animation: 
+    animation:
+        prev-arrow-bounce 0.91s ease-in-out infinite, 
         sign-edge-shrink 0.133s ease-in-out forwards 0.3s;
 }
 
