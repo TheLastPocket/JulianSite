@@ -1,14 +1,16 @@
 .next-container, .prev-container{
+    position: absolute;
+    top: var(--arrow-top-pos);
     z-index: var(--menu-arrow-z);
 }
 
-.next-container {
-    /* transform: translate(-50%, -54%); */
+.prev-container {
+    left: var(--prev-arrow-left-pos);
+    
 }
 
-.prev-container {
-    /* right: 0;*/
-    /* transform: translate(50%, -54%);  */
+.next-container {
+    right: var(--next-arrow-right-pos);
 }
 
 .next-arrow-hitbox, .prev-arrow-hitbox {
@@ -161,7 +163,7 @@
 .next-container.channel-select{
     animation:
         next-arrow-bounce 0.91s ease-in-out infinite,
-        next-arrow-channel-select-slide 3s ease-in-out forwards
+        next-arrow-channel-select-slide 0.5s ease-in-out forwards 0.3s;
 }
 
 .next-container.next-edge {
@@ -359,11 +361,29 @@
     }
 }
 
-/* @keyframes next-arrow-channel-select-slide {
+@keyframes next-arrow-channel-select-slide {
+    50% {
+        scale: calc(1 / var(--channel-zoom-scale)); /* undos effect of zoom wrapper zoom making arrow bigger */
+        /* (--zoom-origin-y - --arrow-home-y) is distance between the arrow after shifting and its desired position */
+        /* This value above is multiplied by the zoom-scale bc we are shrinking it by 1/zoom-scale and need to adjust*/
+        /* (--arrow-home-y - 50vh) is ofsetting the arrow from middle-of-screen height to its actual height 
+        as the first part of the eq helps the arrow find its way to the center */
+        /*Summing up these is basically saying "move the arrow to the new screen center but offset with the arrow's
+        actual rightward position"*/
+        transform: translate(
+            0,
+            calc(var(--channel-zoom-scale) * (var(--zoom-origin-y) - var(--arrow-home-y)) + (var(--arrow-home-y) - 50vh))
+        );
+    }
+
     100% {
-        transform: translate(-40vw, -10vh);
+        scale: calc(1 / var(--channel-zoom-scale));
+        transform: translate(
+            calc(var(--channel-zoom-scale) * (var(--zoom-origin-x) - var(--arrow-home-x)) + (var(--arrow-home-x) - 50vw)),
+            calc(var(--channel-zoom-scale) * (var(--zoom-origin-y) - var(--arrow-home-y)) + (var(--arrow-home-y) - 50vh))
+        );
      }
-} */
+}
 
 @keyframes edge-slide-thin {
     0% {

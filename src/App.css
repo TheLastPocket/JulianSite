@@ -35,8 +35,12 @@
   --banner-button-height: 12.4%;
 
   /* arrow */
-  --menu-arrow-z: 8;
-  --menu-arrow-sign-z: 9;
+  --next-arrow-right-pos: -1vw;
+  --arrow-top-pos: 24vh;
+  --prev-arrow-left-pos: 0vw;
+
+  --menu-arrow-z: 10;
+  --menu-arrow-sign-z: 11;
   --next-sign-home-x: 4%;
   --prev-sign-home-x: -7%;
   --arrow-bounce-cycle: 0.91s;
@@ -132,6 +136,8 @@
     /* scaling cleanly multiplies the zoom point vw (and vh) by the scaling factor,
     leaving it not cleanly at 50vw,50vh (center of the screen). translate nudges it
     back to the center */
+    /* just scale into clicked channel (zoomOrigin) then nudge so zoomOrigin is 
+    at screen center (50vw,50vh) */
     translate(
       calc(50vw - var(--zoom-origin-x) * var(--channel-zoom-scale)),
       calc(50vh - var(--zoom-origin-y) * var(--channel-zoom-scale))

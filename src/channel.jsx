@@ -84,12 +84,6 @@ export default function Channel({ id, channelState, setChannelState }) {
         }
     }
 
-    document.addEventListener('mousemove', function(event) {
-        const x = event.clientX;
-        const y = event.clientY;
-        console.log(`Mouse position: X=${x}, Y=${y}`);
-    });
-
     //Clicking on channel
     const handleChannelClick = () => {
         const rect = channel.current.getBoundingClientRect();

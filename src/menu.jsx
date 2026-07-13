@@ -44,17 +44,17 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
 
     const handleNext = () => {
         setNext(true);
-        
+
         setTimeout(() => {
-            setNext(false);   
+            setNext(false);
         }, 400);
     }
 
     const handlePrev = () => {
         setPrev(true);
-        
+
         setTimeout(() => {
-            setPrev(false);   
+            setPrev(false);
         }, 400);
     }
 
@@ -67,7 +67,7 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
         tooltipTime.current = setTimeout(() => {
             //Play sound for staying in the toolbox for a certain time
             tooltipShow.current.play();
-            //Show tooltip 
+            //Show tooltip
             setTooltipVisible(true);
         }, 300);
     };
@@ -86,7 +86,7 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
             {/* Black background when you select a channel */}
             <img src={channelSelectBackground} className={`channel-select-background ${channelState.state === "selected" ? "selected" : "unselected"}`} />
 
-            <Arrow 
+            <Arrow
                     direction={"prev"}
                     arrowSrc={prevArrow}
                     signSrc={prevSign}
@@ -97,29 +97,20 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
                     onClick={() => {
                         handlePrev();
                     }}
-                    style= {{
-                        position: "absolute",
-                        top: "24vh",
-                        left: "0vw"
-                    }}
                 />
 
-                <Arrow 
+                <Arrow
                     direction={"next"}
                     arrowSrc={nextArrow}
                     signSrc={nextSign}
                     scroll_index={scroll_index}
                     scrollState={scrollState}
-                    setScrollState={setScrollState} 
+                    setScrollState={setScrollState}
                     channelState={channelState}
                     onClick={() => {
                         handleNext();
                     }}
-                    style={{
-                        position: "absolute", 
-                        right: "-1vw",
-                        top: "24vh"
-                    }}/>
+                />
 
 
             <div className={`combined-home-screen ${channelState.state}`}>
@@ -127,24 +118,24 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
 
                 <div className="bottom">
                     <div className="bottom-bar">
-                        <img src={homeMenuBottomLeft} 
-                            alt="Bottom-Left-Bar" 
+                        <img src={homeMenuBottomLeft}
+                            alt="Bottom-Left-Bar"
                             className="bottom-bar-left" />
                         <div className="bottom-bar-middle-div">
-                            <img src={homeMenuBottomMiddle} 
-                                alt="Bottom-Middle-Bar" 
+                            <img src={homeMenuBottomMiddle}
+                                alt="Bottom-Middle-Bar"
                                 className="bottom-bar-middle" />
                             <RenderTime show_colon={showColon} />
                             <RenderDate />
                         </div>
                         <div className="bottom-bar-right-div">
-                            <img src={homeMenuBottomRight} 
-                                alt="Bottom-Right-Bar" 
+                            <img src={homeMenuBottomRight}
+                                alt="Bottom-Right-Bar"
                                 className="bottom-bar-right" />
-                            <img src={MailButton} 
-                                alt="MailButton" 
-                                className="mail-button" 
-                                onMouseEnter={handleMenuHover} 
+                            <img src={MailButton}
+                                alt="MailButton"
+                                className="mail-button"
+                                onMouseEnter={handleMenuHover}
                                 onMouseLeave={handleMenuLeave} />
                         </div>
                         {/* <div className={`mail-tooltip ${tooltipVisible ? 'visible' : 'hidden'}`}>

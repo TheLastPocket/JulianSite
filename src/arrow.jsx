@@ -6,7 +6,7 @@ import arrowClickSound from './assets/sounds/arrowClick.mp3'
 
 
 let currentX = 0;
-export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrollState, setScrollState, channelState, style}) {
+export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrollState, setScrollState, channelState}) {
 
     const signEnterTime = useRef(null);
     const [arrowEntered, setArrowEntered] = useState(false);
@@ -17,10 +17,26 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
 
     const container = document.querySelector('.channels-container');
 
+    const containerRef = useRef(null);
+    const [homePos, setHomePos] = useState({ x: 0, y: 0 });
+
+    /* Measure the arrow's own resting screen position once on mount (before any
+    zoom transform is applied), so channel-select-slide can compute the exact
+    scale+translate that cancels .zoom-wrapper's transform and lands it back here. */
+    useLayoutEffect(() => {
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        setHomePos({
+            x: ((rect.left + rect.right) / 2 / window.innerWidth) * 100,
+            y: ((rect.top + rect.bottom) / 2 / window.innerHeight) * 100,
+        });
+    }, []);
+
     const collectiveStyle = {
-        ...style,
         width: "29vh",
-        height: "30%"
+        height: "30%",
+        '--arrow-home-x': `${homePos.x}vw`,
+        '--arrow-home-y': `${homePos.y}vh`,
     };
 
     const handleArrowEnter = () => {
@@ -96,7 +112,7 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
     
 
     return (
-        <div className={`${direction}-container
+        <div ref={containerRef} className={`${direction}-container
                 ${channelState.state === "selected" ? "channel-select" : ""}
                 ${atEdge ? `${direction}-edge` : ""}
                 ${edgeReturning ? `${direction}-edge-return` : ""}`}
