@@ -162,8 +162,12 @@
 
 .next-container.channel-select{
     animation:
-        next-arrow-bounce 0.91s ease-in-out infinite,
         next-arrow-channel-select-slide 0.5s ease-in-out forwards 0.3s;
+}
+
+.prev-container.channel-select{
+    animation:
+        prev-arrow-channel-select-slide 0.5s ease-in-out forwards 0.3s;
 }
 
 .next-container.next-edge {
@@ -385,6 +389,24 @@
      }
 }
 
+@keyframes prev-arrow-channel-select-slide {
+    50% {
+        scale: calc(1 / var(--channel-zoom-scale)); /* undos effect of zoom wrapper zoom making arrow bigger */
+        transform: translate(
+            0,
+            calc(var(--channel-zoom-scale) * (var(--zoom-origin-y) - var(--arrow-home-y)) + (var(--arrow-home-y) - 50vh))
+        );
+    }
+
+    100% {
+        scale: calc(1 / var(--channel-zoom-scale));
+        transform: translate(
+            calc(var(--channel-zoom-scale) * (var(--zoom-origin-x) - var(--arrow-home-x)) + (var(--arrow-home-x) - 50vw)),
+            calc(var(--channel-zoom-scale) * (var(--zoom-origin-y) - var(--arrow-home-y)) + (var(--arrow-home-y) - 50vh))
+        );
+     }
+}
+
 @keyframes edge-slide-thin {
     0% {
         transform: scaleX(1);
@@ -414,3 +436,9 @@
         transform: scale(0);
     }
 }
+
+/* @keyframes next-arrow-bounce-zoomed {
+    40% {
+        translate: 0.3vw 0vh;
+    }
+} */
