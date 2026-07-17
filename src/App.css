@@ -22,6 +22,7 @@
   --mail-button-right: 5.8vh;
   --time-digit-height: 9vh;
   --date-font-size: 5vh;
+  --channel-select-fade-to-black-duration: 0.29s;
   
   /* channel */
   --ib-aspect-ratio: 170/96;
@@ -129,6 +130,7 @@
   height: 100dvh;
   transform-origin: 0 0;
   transition: transform 0.5s ease-in-out;
+  will-change: transform;
 }
 
 .zoom-wrapper.selected {

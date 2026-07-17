@@ -247,6 +247,9 @@
 }
 
 .channel-select-background.selected {
-    animation: channelSelectBackgroundFadeInScale 0.29s ease-in-out forwards;
+    animation-name: channelSelectBackgroundFadeInScale;
+    animation-duration: var(--channel-select-fade-to-black-duration);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
     z-index: var(--channel-select-background-selected-z);
 }

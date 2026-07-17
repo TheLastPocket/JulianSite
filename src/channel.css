@@ -82,6 +82,15 @@
     position: relative;
     width: var(--channel-width);
     aspect-ratio: 170/96;
+    /* Has to be faster than fade-to-black for some reason... */
+    transition: opacity 0.12s ease-in-out;
+}
+
+/* Dim channels not selected if whole container of every channel has a selected channel
+ and dims only the channels in "menu" mode (not selected) */
+.channels-container:has(.channel-container.selected) .channel-container.menu {
+    opacity: 0;
+    pointer-events: none;
 }
 
 

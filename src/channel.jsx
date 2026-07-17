@@ -10,7 +10,6 @@ import channelHoverBorder from './assets/channel/channelHoverBorder.png'
 import menuHoverSound from './assets/sounds/menuHover.mp3'
 import tooltipSound from './assets/sounds/tooltipSound.mp3'
 import channelMenu from './assets/channel/channelMenu.png'
-import channelSelectBackground from './assets/channel/channelSelectBackground.png'
 
 import channelStartButton from './assets/channel/channelStartButton.png'
 import channelMenuButton from './assets/channel/channelMenuButton.png'
