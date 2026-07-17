@@ -73,15 +73,17 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
 
             setArrowClicked(true);
 
-            /* Scrolls by grid size */
+            const newPage = scrollState.page + (direction === "next" ? 1 : -1);
             const page = container.querySelector('.channel-grid-1');
+            
+            /* calculates scroll based on current channel grid size*/
             const pageWidthVw = page.getBoundingClientRect().width / window.innerWidth * 100;
 
-            currentX += direction === "next" ? -pageWidthVw : pageWidthVw;
+            currentX = -newPage * pageWidthVw;
             container.style.transform = `translateX(${currentX}vw)`;
-            
+
             setScrollState({
-                page: scrollState.page + (direction === "next" ? 1 : -1),
+                page: newPage,
                 direction: direction
             })
 
