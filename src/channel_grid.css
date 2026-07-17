@@ -9,6 +9,9 @@
     overflow: hidden;
     /* border: 2px solid black; */
     transition: transform 0.367s ease-in-out;
+    /* Needed as upon clicking the arrow it traps objects inside in its own stacking context with 
+    no explicit z index*/
+    z-index: var(--channel-video-selected-z);
 }
 
 .channel-grid-1, .channel-grid-2, .channel-grid-3, .channel-grid-4{
