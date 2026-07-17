@@ -160,6 +160,39 @@
 }
 
 
+.next-container.next-edge {
+    transform-origin: right center;
+    animation:
+        next-arrow-bounce 0.91s ease-in-out infinite,
+        edge-slide-thin 0.133s ease-in-out forwards 0.3s;
+}
+
+.prev-container.prev-edge {
+    transform-origin: left center;
+    animation:
+        prev-arrow-bounce 0.91s ease-in-out infinite,
+        edge-slide-thin 0.133s ease-in-out forwards 0.3s;
+}
+
+.next-container.next-edge-return {
+    transform-origin: right center;
+    animation:
+        next-arrow-bounce 0.91s ease-in-out infinite,
+        edge-slide-thin-reverse 0.133s ease-in-out 0.3s both; /*forwards keeps it in
+    place after animation, backwards keeps it in place before sliding back*/
+}
+
+.prev-container.prev-edge-return {
+    transform-origin: left center;
+    animation:
+        prev-arrow-bounce 0.91s ease-in-out infinite,
+        edge-slide-thin-reverse 0.133s ease-in-out 0.3s both;
+}
+
+/* These come after the edge rules above so channel-select wins the specificity
+tie when a channel is selected while an arrow is sitting at a scroll edge
+(e.g. selecting a channel on the first page, where prev would otherwise be
+scaled to 0 by edge-slide-thin and never get a chance to run its slide). */
 .next-container.channel-select{
     animation:
         next-arrow-channel-select-slide 0.5s ease-in-out forwards 0.3s;
@@ -168,35 +201,6 @@
 .prev-container.channel-select{
     animation:
         prev-arrow-channel-select-slide 0.5s ease-in-out forwards 0.3s;
-}
-
-.next-container.next-edge {
-    transform-origin: right center;
-    animation:
-        next-arrow-bounce 0.91s ease-in-out infinite, 
-        edge-slide-thin 0.133s ease-in-out forwards 0.3s;
-}
-
-.prev-container.prev-edge {
-    transform-origin: left center;
-    animation:
-        prev-arrow-bounce 0.91s ease-in-out infinite, 
-        edge-slide-thin 0.133s ease-in-out forwards 0.3s;
-}
-
-.next-container.next-edge-return {
-    transform-origin: right center;
-    animation:
-        next-arrow-bounce 0.91s ease-in-out infinite, 
-        edge-slide-thin-reverse 0.133s ease-in-out 0.3s both; /*forwards keeps it in 
-    place after animation, backwards keeps it in place before sliding back*/
-}
-
-.prev-container.prev-edge-return {
-    transform-origin: left center;
-    animation:
-        prev-arrow-bounce 0.91s ease-in-out infinite, 
-        edge-slide-thin-reverse 0.133s ease-in-out 0.3s both;
 }
 
 .next-sign.edge-shrink,

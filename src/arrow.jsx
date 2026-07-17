@@ -70,10 +70,14 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
         if(!arrowClicked && entered){
             const arrow_click_sound = new Audio(arrowClickSound);
             arrow_click_sound.play();
-            
+
             setArrowClicked(true);
 
-            currentX += direction === "next" ? -85 : 85;
+            /* Scrolls by grid size */
+            const page = container.querySelector('.channel-grid-1');
+            const pageWidthVw = page.getBoundingClientRect().width / window.innerWidth * 100;
+
+            currentX += direction === "next" ? -pageWidthVw : pageWidthVw;
             container.style.transform = `translateX(${currentX}vw)`;
             
             setScrollState({
