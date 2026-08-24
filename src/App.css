@@ -45,7 +45,6 @@
   --next-sign-home-x: 4%;
   --prev-sign-home-x: -7%;
   --arrow-bounce-cycle: 0.91s;
-
   /* --next-arrow-home-y: 0 */
   /*This is for icon*/
   /* --ib-aspect-ratio: 832/456; THIS IS FOR THE BANNER*/
@@ -84,6 +83,12 @@
   :root {
     --channel-width: 28vh;
     --channel-container-height: 80vh;
+    /* Selected-channel banner renders at channel-width * channel-zoom-scale. At the
+    default scale of 4, a 28vh-wide banner (~50-60vw-equivalent on a typical portrait
+    phone, since vh represents more px than vw when height > width) would render at
+    roughly 200-240vw - wildly overflowing a 100vw-wide phone screen. Reduced here so
+    the zoomed banner actually stays within the viewport. */
+    --channel-zoom-scale: 1.8;
   }
 }
 

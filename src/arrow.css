@@ -369,26 +369,29 @@ scaled to 0 by edge-slide-thin and never get a chance to run its slide). */
     }
 }
 
+/* Target is the selected channel's right border, not the arrow's original menu
+position. The selected channel always renders centered at exactly 50vw/50vh after
+the zoom (regardless of which channel was clicked or where), with a rendered width
+of channel-width * channel-zoom-scale - so its right edge is a fixed, computable
+offset from center: 50vw + half that width. Plugging T = 50vw + halfWidth into the
+same derivation used for "return to home" collapses the "-50vw" term against T's
+own "+50vw", leaving just halfWidth + the same zoom-compensation term as before.
+Y's target (50vh, vertically centered on the channel) collapses even further since
+T - 50vh = 0, dropping the "+ (home - 50vh)" offset entirely. */
 @keyframes next-arrow-channel-select-slide {
     50% {
         scale: calc(1 / var(--channel-zoom-scale)); /* undos effect of zoom wrapper zoom making arrow bigger */
-        /* (--zoom-origin-y - --arrow-home-y) is distance between the arrow after shifting and its desired position */
-        /* This value above is multiplied by the zoom-scale bc we are shrinking it by 1/zoom-scale and need to adjust*/
-        /* (--arrow-home-y - 50vh) is ofsetting the arrow from middle-of-screen height to its actual height 
-        as the first part of the eq helps the arrow find its way to the center */
-        /*Summing up these is basically saying "move the arrow to the new screen center but offset with the arrow's
-        actual rightward position"*/
         transform: translate(
             0,
-            calc(var(--channel-zoom-scale) * (var(--zoom-origin-y) - var(--arrow-home-y)) + (var(--arrow-home-y) - 50vh))
+            calc(var(--channel-zoom-scale) * (var(--zoom-origin-y) - var(--arrow-home-y)))
         );
     }
 
     100% {
         scale: calc(1 / var(--channel-zoom-scale));
         transform: translate(
-            calc(var(--channel-zoom-scale) * (var(--zoom-origin-x) - var(--arrow-home-x)) + (var(--arrow-home-x) - 50vw)),
-            calc(var(--channel-zoom-scale) * (var(--zoom-origin-y) - var(--arrow-home-y)) + (var(--arrow-home-y) - 50vh))
+            calc((var(--channel-width) * var(--channel-zoom-scale) / 2) + var(--channel-zoom-scale) * (var(--zoom-origin-x) - var(--arrow-home-x))),
+            calc(var(--channel-zoom-scale) * (var(--zoom-origin-y) - var(--arrow-home-y)))
         );
      }
 }
@@ -398,15 +401,15 @@ scaled to 0 by edge-slide-thin and never get a chance to run its slide). */
         scale: calc(1 / var(--channel-zoom-scale)); /* undos effect of zoom wrapper zoom making arrow bigger */
         transform: translate(
             0,
-            calc(var(--channel-zoom-scale) * (var(--zoom-origin-y) - var(--arrow-home-y)) + (var(--arrow-home-y) - 50vh))
+            calc(var(--channel-zoom-scale) * (var(--zoom-origin-y) - var(--arrow-home-y)))
         );
     }
 
     100% {
         scale: calc(1 / var(--channel-zoom-scale));
         transform: translate(
-            calc(var(--channel-zoom-scale) * (var(--zoom-origin-x) - var(--arrow-home-x)) + (var(--arrow-home-x) - 50vw)),
-            calc(var(--channel-zoom-scale) * (var(--zoom-origin-y) - var(--arrow-home-y)) + (var(--arrow-home-y) - 50vh))
+            calc((var(--channel-width) * var(--channel-zoom-scale) / -2) + var(--channel-zoom-scale) * (var(--zoom-origin-x) - var(--arrow-home-x))),
+            calc(var(--channel-zoom-scale) * (var(--zoom-origin-y) - var(--arrow-home-y)))
         );
      }
 }

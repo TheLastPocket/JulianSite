@@ -17,6 +17,56 @@ function App() {
     next_clicked: false
   })
 
+  useEffect(() => {
+    let resizeTimeout = null;
+
+    const recenterSelectedChannel = () => {
+      const wrapper = document.querySelector('.zoom-wrapper');
+      const selected = document.querySelector('.channel-container.selected');
+      
+      // must have a channel selected to do recentering logic
+      if (!wrapper || !selected) return;
+
+      const prevTransform = wrapper.style.transform;
+      const prevTransition = wrapper.style.transition;
+      wrapper.style.transition = 'none';
+      wrapper.style.transform = 'none';
+
+      // get viewport absolute percentage X and Y: 0=top, left; 1=bottom,right
+      const rect = selected.getBoundingClientRect();
+      const originX = ((rect.left + rect.right) / 2 / window.innerWidth) * 100;
+      const originY = ((rect.top + rect.bottom) / 2 / window.innerHeight) * 100;
+
+      wrapper.style.transform = prevTransform;
+      /* Keep the transition suppressed through the React update below, so the
+      corrected zoomOrigin snaps into place instantly instead of animating - only
+      restore it once the snap has actually painted, so a genuine future click-to-select
+      still gets the normal smooth zoom-in. */
+      setChannelState((prev) => {
+        if (prev.state !== "selected") return prev;
+        return { ...prev, zoomOrigin: { x: originX, y: originY } };
+      });
+
+      // 
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          wrapper.style.transition = prevTransition;
+        });
+      });
+    };
+
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(recenterSelectedChannel, 150);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimeout);
+    };
+  }, []);
+
   /* Dev helper: click anywhere to log its screen position in vw/vh, plus
   wherever the next-arrow currently sits, so the two can be compared. */
   useEffect(() => {
