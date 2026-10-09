@@ -134,6 +134,11 @@
     position: relative;
     flex-grow: 0;
     flex-shrink: 0;
+    /*The following height spec fixes a webkit issue. The 
+    gist is that at least safari doesnt follow flexbox specs in
+    child stretched heights being counted as "definite",
+    so we provide the height explicitly*/
+    height: var(--bottom-bar-height);
     margin-left: -1px;
     /*Counteracts weird 1px flexbox gap*/
 

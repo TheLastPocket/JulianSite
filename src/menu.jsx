@@ -125,18 +125,18 @@ export default function Menu({ channelState , scrollState, setScrollState}) {
                             <img src={homeMenuBottomMiddle}
                                 alt="Bottom-Middle-Bar"
                                 className="bottom-bar-middle" />
-                            <RenderTime show_colon={showColon} />
-                            <RenderDate />
+                            {/* <RenderTime show_colon={showColon} />
+                            <RenderDate /> */}
                         </div>
                         <div className="bottom-bar-right-div">
                             <img src={homeMenuBottomRight}
                                 alt="Bottom-Right-Bar"
                                 className="bottom-bar-right" />
-                            <img src={MailButton}
+                            {/* <img src={MailButton}
                                 alt="MailButton"
                                 className="mail-button"
                                 onMouseEnter={handleMenuHover}
-                                onMouseLeave={handleMenuLeave} />
+                                onMouseLeave={handleMenuLeave} /> */}
                         </div>
                         {/* <div className={`mail-tooltip ${tooltipVisible ? 'visible' : 'hidden'}`}>
                             <img className={`mail-tooltip-background ${tooltipVisible ? 'visible' : 'hidden'}`}
