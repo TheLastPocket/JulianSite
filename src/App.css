@@ -81,13 +81,15 @@
 
 @media (max-width: 620px) {
   :root {
-    --channel-width: 28vh;
-    --channel-container-height: 80vh;
+    --channel-width: 23vh;
+    --channel-container-height: 63vh;
     /* Selected-channel banner renders at channel-width * channel-zoom-scale. At the
     default scale of 4, a 28vh-wide banner (~50-60vw-equivalent on a typical portrait
     phone, since vh represents more px than vw when height > width) would render at
     roughly 200-240vw - wildly overflowing a 100vw-wide phone screen. Reduced here so
     the zoomed banner actually stays within the viewport. */
+    --next-sign-home-x: 22%;
+  --prev-sign-home-x: -27%;
     --channel-zoom-scale: 1.8;
   }
 }
