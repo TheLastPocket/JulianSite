@@ -20,6 +20,20 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
     const containerRef = useRef(null);
     const [homePos, setHomePos] = useState({ x: 0, y: 0 });
 
+    const sign_bubble_delay = 50;
+
+    const hoverSound = useRef(null);
+    const clickSound = useRef(null);
+    const playSound = (sound, src) => {
+        if (!sound.current) sound.current = new Audio(src);
+        sound.current.currentTime = 0;
+        sound.current.play();
+    };
+
+    /* New tap can cancel the previous tap pending action */
+    const signShowTimer = useRef(null);
+    const signHideTimer = useRef(null);
+
     /* Measure the arrow's own resting screen position once on mount (before any
     zoom transform is applied), so channel-select-slide can compute the exact
     scale+translate that cancels .zoom-wrapper's transform and lands it back here. */
@@ -39,15 +53,35 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
         '--arrow-home-y': `${homePos.y}vh`,
     };
 
-    const handleArrowEnter = () => {
+    /* Handler for mobile devices */
+    const handleArrowTouch = (e) => {
+        if(e.pointerType !== 'touch') return;
 
-        const music = new Audio(menuHoverSound);
-        music.play();
+        clearTimeout(signShowTimer.current);
+        clearTimeout(signHideTimer.current);
+
+        setArrowEntered(true);
+        setEntered(true);
+
+        signShowTimer.current = setTimeout(() => {
+            setSignEntered(true);
+        }, sign_bubble_delay);
+
+        signHideTimer.current = setTimeout(() => {
+            setSignEntered(false);
+            setArrowEntered(false);
+            setEntered(false);
+        }, 500);
+    };
+
+    const handleArrowEnter = (e) => {
+        if (e.pointerType === 'touch') return;
+        playSound(hoverSound, menuHoverSound);
         setArrowEntered(true);
         setTimeout(() => {
             /* The sign bubble starts to grow when the arrow is at its smallest */
                 setSignEntered(true);
-        }, 50);
+        }, sign_bubble_delay);
         setEntered(true);
     };
 
@@ -61,15 +95,15 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
         }
     };
 
-    const handleSignLeave = () => {
+    const handleSignLeave = (e) => {
+        if (e.pointerType === 'touch') return;
         setSignEntered(false);
         setEntered(false);
     };
 
     const handleScroll = (direction) => {
         if(!arrowClicked && entered){
-            const arrow_click_sound = new Audio(arrowClickSound);
-            arrow_click_sound.play();
+            playSound(clickSound, arrowClickSound);
 
             setArrowClicked(true);
 
@@ -125,8 +159,8 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
             style={collectiveStyle}
             onAnimationEnd={handleContainerAnimationEnd}>
             <div className={`${direction}-sign-hitbox`}
-                onMouseEnter={handleSignEnter}
-                onMouseLeave={handleSignLeave}
+                onPointerEnter={handleSignEnter}
+                onPointerLeave={handleSignLeave}
                 onClick={() => handleScroll(direction)}>
                 <img src={signSrc}
                     className={`${direction}-sign ${signEntered ? "visible" : "hidden"}
@@ -135,8 +169,9 @@ export default function Arrow({ direction, arrowSrc, signSrc, scrollIndex, scrol
                     }/>
             </div>
             <div className={`${direction}-arrow-hitbox`}
-                onMouseEnter={handleArrowEnter}
-                onMouseLeave={handleArrowLeave}
+                onPointerEnter={handleArrowEnter}
+                onPointerLeave={handleArrowLeave}
+                onPointerDown={handleArrowTouch}
                 onClick={() => handleScroll(direction)}>
                     <img src={arrowSrc}
                     className={`${direction}-arrow ${(arrowEntered) ? "enter" : ""}

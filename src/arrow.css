@@ -2,6 +2,10 @@
     position: absolute;
     top: var(--arrow-top-pos);
     z-index: var(--menu-arrow-z);
+    /* hopefully stops iphone delay by not waiting for
+    double click */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .prev-container {

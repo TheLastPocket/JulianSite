@@ -89,7 +89,7 @@
     roughly 200-240vw - wildly overflowing a 100vw-wide phone screen. Reduced here so
     the zoomed banner actually stays within the viewport. */
     --next-sign-home-x: 22%;
-  --prev-sign-home-x: -27%;
+    --prev-sign-home-x: -27%;
     --channel-zoom-scale: 1.8;
   }
 }
